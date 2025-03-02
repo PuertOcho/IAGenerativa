@@ -1,0 +1,25 @@
+<div class="invert" *ngIf="messagesByTime && messagesByTime.size > 0" appInvertirSentidoScroll>
+  <ion-item-group
+    style="background: transparent"
+    class="chats-group"
+    *ngFor="let mensaggeKey of messageKeys"
+  >
+    <!-- Date message divider -->
+    <ion-item-divider
+      sticky
+      class="chats-group-divider"
+      [ngClass]="{ scrolling: isPageScrolling }"
+    >
+      <ion-label>
+        {{ mensaggeKey }}
+      </ion-label>
+    </ion-item-divider>
+
+    <app-chat-item
+      [messages]="messagesByTime.get(mensaggeKey).messages"
+      [esperandoRespuestaMensaje]="esperandoRespuestaMensaje"
+      [borrarMensajes]="borrarMensajes"
+      (scrollToBottomEvent)="scrollToBottom()"
+    ></app-chat-item>
+  </ion-item-group>
+</div>

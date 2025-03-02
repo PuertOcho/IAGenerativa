@@ -1,0 +1,10 @@
+Analiza el siguiente texto y separa individualmente cada tarea y crea una respuesta que pueda ser convertida en una lista de Strings en JSON.
+Ejemplo1
+entrada: Anade huevos y pizza a la cesta de la compra y pon una alarma a las 7 de la manaña
+respuesta: ["Anade huevos y pizza a la cesta de la compra", "pon una alarma a las 7 de la manaña"]
+Ejemplo2
+entrada: Crea un nuevo proyecto en el ordenador principal, traduceme este pdf y guardalo en esa misma carpeta y busca en internet como hacer fuego"
+respuesta: ["Crea un nuevo proyecto en el ordenador principal", "traduceme este pdf y guardalo en esa misma carpeta", "busca en internet como hacer fuego"]
+Ejemplo3
+entrada: ¿Por que el cielo es azul?
+respuesta: ["¿Por que el cielo es azul?"]

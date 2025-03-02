@@ -1,0 +1,8 @@
+   
+   <ion-grid>
+      <ion-row *ngFor="let elemento of elementos">
+        <ion-col *ngFor="let bloque of bloques" [size]="bloque.espacio">
+          <ion-skeleton-text *ngIf="!bloque.vacio" [animated]="true" [ngStyle]="assinarEstilo(bloque.borde)" ></ion-skeleton-text>
+        </ion-col>
+      </ion-row>
+    </ion-grid>

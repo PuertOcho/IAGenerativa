@@ -1,0 +1,43 @@
+# Usa Ubuntu 24.04 como base
+FROM ubuntu:24.04
+
+# Instala dependencias básicas y Node.js
+RUN apt-get update && apt-get install -y \
+    curl \
+    git \
+    build-essential \
+    python3 \
+    python3-pip \
+    python3-dev \
+    nginx && \
+    curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
+    apt-get install -y nodejs && \
+    apt-get clean
+
+# Instala la CLI de Ionic globalmente
+RUN npm install -g @ionic/cli
+
+# Establece el directorio de trabajo
+WORKDIR /app
+
+# Copia los archivos del proyecto al contenedor
+COPY . .
+
+# Instala las dependencias del proyecto
+RUN npm install --unsafe-perm --legacy-peer-deps
+
+# Construye la aplicación
+RUN ionic build
+
+# Configura NGINX para servir los archivos de la carpeta 'www'
+RUN rm -rf /var/www/html/* && cp -r www/* /var/www/html
+
+# Copiar la configuración personalizada de NGINX
+COPY default.conf /etc/nginx/conf.d/default.conf
+
+# Expone el puerto 80
+EXPOSE 80
+
+# Comando para iniciar NGINX
+CMD ["nginx", "-g", "daemon off;"]
+

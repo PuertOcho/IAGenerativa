@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+      <ion-back-button text="" defaultHref="/home-tabs/chats"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Lista de la compra</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding" >
+
+  <ng-template [ngIf]="!isLoading" [ngIfElse]="loading" >
+
+    <ion-label class="class-empty" *ngIf="shoppingList && shoppingList.productRelations.length == 0">No hay productos en la lista de la compra</ion-label>
+    
+    <!-- Productos no marcados -->
+    <ion-list *ngIf="shoppingList && shoppingList.productRelations && shoppingList.productRelations.length > 0 && productsNoMarcados.length > 0" >
+              <!-- The reorder gesture is disabled by default, enable it to drag and drop items -->
+              <!-- Casting $event to $any is a temporary fix for this bug https://github.com/ionic-team/ionic-framework/issues/24245 -->
+              <ion-reorder-group [disabled]="false" (ionItemReorder)="handleReorder($any($event))" >
+                <ion-item *ngFor="let item of productsNoMarcados" lines="none" [ngStyle]="assinarColorDelBorde(item)">
+                  <ion-reorder slot="start"></ion-reorder>
+      
+                  <ion-input style="max-width: 30px;" (ionInput)="onInputNumber($event, item)" [value]="item.quantity" type="number"></ion-input>
+
+                  <ion-label> {{ item.productInfo?.nombreProducto }} </ion-label>
+                  <ion-checkbox slot="end" (ionChange)="checkboxClick($event, item)" [checked]="item.marcado"></ion-checkbox>
+                </ion-item>
+              </ion-reorder-group>
+    </ion-list>
+
+    <!-- Productos marcados -->
+    <ion-list *ngIf="shoppingList && shoppingList.productRelations && shoppingList.productRelations.length > 0 && productsMarcados.length > 0">
+              <!-- The reorder gesture is disabled by default, enable it to drag and drop items -->
+              <!-- Casting $event to $any is a temporary fix for this bug https://github.com/ionic-team/ionic-framework/issues/24245 -->
+              <ion-reorder-group [disabled]="false" (ionItemReorder)="handleReorder($any($event))">
+                <ion-item *ngFor="let item of productsMarcados" lines="none" [ngStyle]="assinarColorDelBorde(item)">
+                  <ion-reorder slot="start"></ion-reorder>
+                  <ion-input style="max-width: 30px;" (ionInput)="onInputNumber($event, item)" [value]="item.quantity" type="number"></ion-input>
+
+                  <ion-label> {{ item.productInfo?.nombreProducto }} </ion-label>
+                  <ion-checkbox slot="end" (ionChange)="checkboxClick($event, item)" [checked]="item.marcado"></ion-checkbox>
+                </ion-item>
+              </ion-reorder-group>
+    </ion-list>
+
+  </ng-template>
+
+        <ng-template #loading >
+          <ion-item lines="none" [ngStyle]="assinarColorDelBorde(null)">
+            <app-loading-skeleton-item numeroElementos="1" formato="1:c 10:c 1:c"></app-loading-skeleton-item>
+          </ion-item>
+
+          <ion-item lines="none" [ngStyle]="assinarColorDelBorde(null)">
+            <app-loading-skeleton-item numeroElementos="1" formato="1:c 10:c 1:c"></app-loading-skeleton-item>
+          </ion-item>
+
+          <ion-item lines="none" [ngStyle]="assinarColorDelBorde(null)">
+            <app-loading-skeleton-item numeroElementos="1" formato="1:c 10:c 1:c"></app-loading-skeleton-item>
+          </ion-item>
+        </ng-template>
+
+</ion-content>
+
+<footer>
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button [disabled]="isLoading" *ngIf="productsMarcados.length > 0" style="margin: 20px;" (click)="confirmarProductosSeleccionados()">
+      <ion-icon name="thumbs-up-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</footer>

@@ -1,0 +1,82 @@
+
+
+  <ion-grid *ngIf="cargandoAudio == false" class="grid-wavesurfer">
+
+      <ion-row *ngIf="true" class="ion-justify-content-center ion-align-items-center wavesurfer-row maximo-ancho-barra">
+
+        <ion-col class="ion-justify-content-center ion-align-items-center" style="overflow: visible">
+          <ion-buttons>
+            <ion-button *ngIf="estado == 'pause'" (click)="play()" fill="clear" style="color: var(--ion-color-primary)"> 
+              <ion-icon slot="icon-only" name="play-circle" style="font-size: 40px"> </ion-icon>
+            </ion-button>
+  
+            <ion-button *ngIf="estado == 'play'" (click)="pause()" fill="clear" style="color: var(--ion-color-primary);" >
+              <ion-icon slot="icon-only" name="pause-circle"  style="font-size: 40px"></ion-icon>
+            </ion-button>
+
+            <ion-range
+              aria-label="Custom range"
+              [min]="0"
+              [max]= "getDuration()"
+              [value]="getcurrentTimeMilis()"
+              (ionChange)="cambiarcurrentTimeMilis($event)">
+            </ion-range>
+
+          </ion-buttons>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="maximo-ancho-barra">
+        <ion-col size="2"></ion-col>
+        <ion-col size="3"class="tiempoAudio" style="text-align: left; padding-left: 18px;">
+          <span *ngIf="audio.currentTime"> {{ formatSecondsToTime(currentTimeMilis) }}</span>
+          <span *ngIf="!audio.currentTime">00:00.00</span>
+        </ion-col>
+
+        <ion-col size="4"></ion-col>
+        <ion-col size="3" class="tiempoAudio" style="text-align: right; padding-right: 23px;">
+          <span>{{ formatSecondsToTime(getDuration()) }}</span>
+        </ion-col>
+
+      </ion-row>
+  
+  </ion-grid>
+
+  <ion-grid *ngIf="cargandoAudio == true" class="grid-wavesurfer">
+
+    <ion-row  *ngIf="true" class="ion-justify-content-center ion-align-items-center wavesurfer-row maximo-ancho-barra">
+      <ion-col class="ion-justify-content-center ion-align-items-center" style="overflow: visible">
+        <ion-buttons>
+          <ion-button *ngIf="estado == 'pause'" (click)="play()" fill="clear" style="color: var(--ion-color-primary)"> 
+            <ion-icon slot="icon-only" name="play-circle" style="font-size: 40px"> </ion-icon>
+          </ion-button>
+
+          <ion-button *ngIf="estado == 'play'" (click)="pause()" fill="clear" style="color: var(--ion-color-primary);" >
+            <ion-icon slot="icon-only" name="pause-circle"  style="font-size: 40px"></ion-icon>
+          </ion-button>
+
+          <ion-progress-bar type="indeterminate" *ngIf="true" style="margin-left: 18px; margin-right: 18px;"></ion-progress-bar>
+
+        </ion-buttons>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="2"></ion-col>
+      <ion-col size="3"class="tiempoAudio" style="text-align: left; padding-left: 18px;">
+        <span>00:00.00</span>
+      </ion-col>
+
+      <ion-col size="4"></ion-col>
+      <ion-col size="3" class="tiempoAudio" style="text-align: right; padding-right: 23px;">
+        <span>--:--.--</span>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid *ngIf="audioError">
+    <ion-row>
+      <ion-col size="12">
+        Error al buscar audio {{ message?.fecha }}_{{ message?.id }}
+      </ion-col>
+    </ion-row>
+  </ion-grid>

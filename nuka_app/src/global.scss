@@ -1,0 +1,170 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+/* General */
+ion-app {
+    caret-color: transparent !important;
+}
+
+textarea, ion-searchbar {
+    caret-color: var(--ion-color-primary) !important;
+}
+
+/* Clases personalizadas */
+.loading-chat {
+    background: none;
+    width: 20%;
+    min-height: 150px;
+    margin-right: 40%;
+    margin-left: 40%;
+}
+
+.separator {
+    border-top: 1px solid #ccc;
+    margin: 5px 0;
+}
+
+.headerNuka {
+    background: var(--ion-color-light);
+}
+
+.fondoDefault {
+    background: var(--ion-color-dark);
+}
+
+.sinBarraDeScroll {
+    --offset-bottom: auto!important;
+    --overflow: hidden;
+    overflow: auto;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+}
+
+.barraScrollCustom {
+    --offset-bottom: auto !important;
+    --overflow: auto;
+    overflow: auto;
+
+    &::-webkit-scrollbar {
+        width: 3px;
+        height: 5px;
+        scroll-behavior: reverse;
+        overflow-y: scroll;
+    }
+    
+    &::-webkit-scrollbar-track {
+        background: none;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        border-radius: 5px;
+        background: var(--ion-color-primary);
+    }
+    
+    .inner-scroll {
+        scrollbar-width: thin;
+    }
+}
+
+.item-options-ios {
+    border: none;
+}
+
+
+// Estilos para servicios
+.ios button.alert-button.alert-token-button-cancel {
+    border-right: 0;
+    border-bottom-left-radius: 13px;
+    border-top-left-radius: 13px;
+  }
+  
+.ios button.alert-button.alert-token-button-confirm {
+    border-bottom-right-radius: 13px;
+    border-top-right-radius: 13px;
+}
+
+.ionSearchbar {
+    --border-radius: 20px;
+}
+
+// Chat
+.div-opcion-flotante-chat {
+    position: fixed;
+    top: 90px;
+    right: 160px;
+    z-index: 8;
+    border-radius: 50%;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 5px;
+
+    background-color: var(--ion-color-primary);
+
+    height: 60px;
+    width: 60px;
+    overflow: hidden;
+
+    display: flex;
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    
+    ion-button {
+        width: 100%;
+        max-width: 60px;
+        padding: 0;
+        margin: 0;
+
+        ion-icon {
+            z-index: 8;
+            color: var(--ion-color-primary-contrast);
+        }
+    }
+
+    overflow: auto;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.alCentro {
+    display: flex;
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+}
+
+.fullscreen {
+    --width:100% !important;
+    --height:100% !important;
+}
+
+.selectable-text {
+    -moz-user-select: text !important; /* Firefox */
+    -ms-user-select: text !important; /* Internet Explorer/Edge */
+    user-select: text !important; /* Standard syntax */
+    -webkit-user-select: text !important; /* Chrome y Safari */
+    cursor: none;
+    caret-color: var(--ion-color-primary) !important;
+}

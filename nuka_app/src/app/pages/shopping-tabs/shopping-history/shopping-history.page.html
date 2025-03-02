@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Historial de compras</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="sinBarraDeScroll">
+  <ion-refresher slot="fixed" [pullFactor]="0.4" [pullMin]="50" [pullMax]="200" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="refresh-outline"
+      refreshingSpinner="dots">
+    </ion-refresher-content>
+  </ion-refresher>
+  
+  <ng-template [ngIf]="!loading" [ngIfElse]="loadingItem">
+    <ion-label class="class-empty" *ngIf="listasDeLaCompra && listasDeLaCompra.length == 0">No hay compras en el historial</ion-label>
+
+    <ion-card *ngFor="let item of listasDeLaCompra" lines="none">
+      <ion-card-header>
+        <ion-card-title> {{ tranformDate(item.datePurchase) }} </ion-card-title>
+        <ion-card-subtitle>{{ item.id }}</ion-card-subtitle>
+      </ion-card-header>
+    
+      <ion-card-content >
+        <ion-accordion-group>
+          <ion-accordion value="first">
+            <ion-item slot="header" color="light">
+              <ion-label *ngIf="item.productRelations">{{ item.productRelations.length }} Productos</ion-label>
+            </ion-item>
+
+            <div slot="content" *ngFor="let product of item.productRelations">
+              <ion-grid>
+                <ion-row>
+                  <ion-col size="2">
+                    <ion-label> {{ product.quantity }} </ion-label>
+                  </ion-col>
+                  <ion-col size="10">
+                    <ion-label> {{ product.productInfo?.nombreProducto }} </ion-label>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </div>
+
+          </ion-accordion>
+        </ion-accordion-group>
+
+      </ion-card-content>
+
+    </ion-card>
+  </ng-template>
+</ion-content>
+
+<ng-template #loadingItem>
+  <ion-item lines="none">
+    <ion-spinner name="crescent" class="loading-chat"></ion-spinner>
+  </ion-item>
+</ng-template> 
+
+<ion-footer class="ion-no-border" *ngIf="numeroPaginas && numeroPaginas > 1">
+  <app-paginacion-item 
+    [paginaActual]="paginaActual" 
+    [itemPorPagina]="itemPorPagina" 
+    [totalItems]="totalItems" 
+    (cambioPaginaEvent)="cambioPagina($event)">
+  </app-paginacion-item>
+</ion-footer>
+

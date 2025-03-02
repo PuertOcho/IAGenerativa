@@ -1,0 +1,13 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Tamaño Completo</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="imagenUrl" style="background: green">
+  <ion-img [src]="imagenUrl" style="background: yellow"></ion-img>
+</ion-content>
+

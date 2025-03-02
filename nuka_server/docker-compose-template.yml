@@ -1,0 +1,41 @@
+services:
+  MONGO_CONTAINER_NAME_LABEL:
+    image: mongo:4.4.6
+    restart: unless-stopped
+    container_name: MONGO_CONTAINER_NAME_LABEL
+    network_mode: "host"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: MONGO_INITDB_ROOT_USERNAME_LABEL
+      MONGO_INITDB_ROOT_PASSWORD: MONGO_INITDB_ROOT_PASSWORD_LABEL
+    volumes:
+      - ./datos/mongodb:/data/db
+  SPRING_CONTAINER_NAME_LABEL:
+    build: .
+    restart: unless-stopped
+    container_name: SPRING_CONTAINER_NAME_LABEL
+    privileged: true
+    network_mode: "host"
+    deploy:
+      resources:
+        limits:
+          memory: "0"
+          cpus: "0"
+    runtime: nvidia
+    environment:
+      NUKA_PUERTO: NUKA_PUERTO_LABEL
+      NUKA_HOST: NUKA_HOST_LABEL
+      NUKA_DEBUG_MODE: DEBUG_MODE_LABEL
+      NUKA_OPENAI_KEY: NUKA_OPENAI_KEY_LABEL
+      NUKA_MONGO_BD_NAME: NUKA_MONGO_BD_NAME_LABEL
+      NUKA_MONGO_USERNAME: NUKA_MONGO_USERNAME_LABEL
+      NUKA_MONGO_PASSWORD: NUKA_MONGO_PASSWORD_LABEL
+      NUKA_MONGO_PUERTO: NUKA_MONGO_PUERTO_LABEL
+      NUKA_MONGO_HOST: NUKA_MONGO_HOST_LABEL
+      NUKA_MICROSOFT_COG_KEY: NUKA_MICROSOFT_COG_KEY_LABEL
+      NUKA_MICROSOFT_COG_REGION: NUKA_MICROSOFT_COG_REGION_LABEL
+      NUKA_KEY_KWT: NUKA_KEY_KWT_LABEL
+      NVIDIA_VISIBLE_DEVICES: all
+      NVIDIA_DRIVER_CAPABILITIES: compute,utility
+    volumes:
+      - ./datos/datos_server:/var/datos
+      - ./datos/datos_server_public:/var/datosNoAuth

@@ -1,0 +1,80 @@
+<ion-card [class]="classItem" [id]="item.id">
+
+  <!-- NOTIFICACIONES -->   
+  <ng-template [ngIf]="item.tipoMsjEstado === 'NOTIFICACIONES'">
+    <ion-card-content [ngStyle]="assinarEstiloNotificacion(item)">
+      <ion-item lines="none">
+        <ion-thumbnail *ngIf="item.imgMsjPath" slot="start">
+          <!-- <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />--> 
+          <img [src]="item.imgMsjPath"/>
+        </ion-thumbnail>
+
+        <div class="divNotificacion">
+          <strong *ngIf="utils.isToday(item.fecha)">HOY {{ item.fecha | formatTimestampFecha : 'hh:mm' }}</strong>
+          <strong *ngIf="!utils.isToday(item.fecha)">{{ item.fecha | formatTimestampFecha : 'DD MMMMM, hh:mm' }}</strong>
+          <span class="selectable-text">{{ item.texto }}</span>
+        </div>
+
+        <ion-buttons slot="end">
+          <ion-button *ngIf="item.redireccion" (click)="redireccionPorNotificacion()">
+            <ion-icon slot="icon-only" name="arrow-redo-outline"></ion-icon>
+          </ion-button>
+
+          <ion-button (click)="cerrarNotificacion()">
+            <ion-icon color="danger" slot="icon-only" name="close-circle-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+
+      </ion-item>
+    </ion-card-content>
+  </ng-template>
+
+    <!-- CALENDARIO -->
+    <ng-template [ngIf]="item.tipoMsjEstado === 'CALENDARIO'">
+      <ion-card-content appLongPressModificarCalendario [id]="item.id" (longPress)="onLongPress($event)">
+        <ion-item lines="none">
+          <div>
+            <strong class="tareaTextoSegundario">{{ item.fecha | formatTimestampFecha : 'hh:mm' }}</strong>
+            <span class="tareaTextoPrincipal selectable-text">{{ item.texto }}</span>
+          </div>
+        </ion-item>
+      </ion-card-content>
+    </ng-template>
+
+    <!-- TAREAS POR HACER-->
+    <ng-template [ngIf]="item.tipoMsjEstado === 'TAREAS' && item.estado == 'POR_HACER'">
+      <ion-card-content>
+        <ion-item lines="none">
+          <ion-checkbox labelPlacement="end" style="min-width: 25px; margin-left: 15px;" (ionChange)="terminarTareaPorHacer($event)"></ion-checkbox>
+          <div>
+            <span class="tareaTextoPrincipal">{{ item.texto }}</span>
+            <span class="tareaTextoSegundario" *ngIf="item.tiempoRepeticion">Días restantes: {{ getDiasRestantes(item) }}</span>
+            <span class="tareaTextoSegundario" *ngIf="!item.tiempoRepeticion">---</span>
+          </div>
+          <ion-buttons slot="end">
+            <ion-button>
+              <ion-icon slot="icon-only" [ngStyle]="assinarEstiloCirculo(item)" class="circulo-estado"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-item>
+      </ion-card-content>
+    </ng-template>
+
+    <!-- TAREAS INFORMACION-->
+    <ng-template [ngIf]="item.tipoMsjEstado === 'TAREAS' && item.estado == 'INFO'">
+          <ion-card-content>
+            <ion-item lines="none">
+              <div>
+                <span class="tareaTextoPrincipal">{{ item.texto }}</span>
+                <span class="tareaTextoSegundario" *ngIf="item.tiempoRepeticion">Días de repetición: {{ item.tiempoRepeticion }}</span>
+                <span class="tareaTextoSegundario" *ngIf="!item.tiempoRepeticion">---</span>
+              </div>
+              <ion-buttons slot="end">
+                <ion-button (click)="agregarTareaPorHacer()">
+                  <ion-icon color="success" slot="icon-only" name="refresh-outline"></ion-icon>
+                </ion-button>
+              </ion-buttons>
+            </ion-item>
+          </ion-card-content>
+     </ng-template>
+</ion-card>

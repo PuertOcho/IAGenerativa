@@ -1,0 +1,60 @@
+.barHomeTabs {
+    overflow: visible;
+    // padding-bottom: 20px;    
+    
+    ion-tab-button {
+        overflow: visible;
+        padding-bottom: 0px;
+
+        img, video {
+            height: 65px;
+            overflow: visible;
+            background-size: cover; /* Cubrir sin deformar la imagen */
+            background-position: center; /* Centrar la imagen */
+            object-fit: fill;
+        }
+
+        .buttonWrapper {
+            position: absolute;
+        }
+    }
+}
+
+ion-tabs { contain: none; }
+ion-tab-bar { contain: none }
+
+ion-tab-button::part(native){
+   overflow: visible;
+}
+  
+  .animated-icon {
+    animation-name: zoom-in;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards; 
+
+  }
+
+  .no-animated-icon {
+    opacity: 0.7;
+    animation-name: zoom-out;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards; 
+  }
+
+  @keyframes zoom-in {
+    0% {
+      transform: scale(0.75, 0.75);
+    }
+    100% {
+      transform: scale(1, 1);
+    }
+  }
+
+  @keyframes zoom-out {
+    0% {
+    transform: scale(1, 1);
+    }
+    100% {
+      transform: scale(0.75, 0.75);
+    }
+  }

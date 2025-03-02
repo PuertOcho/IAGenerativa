@@ -1,0 +1,30 @@
+# Utiliza una imagen base con Maven y Java 17
+FROM maven:3.8.4-openjdk-17 AS builder
+
+# Copia el código fuente de tu proyecto a la imagen
+COPY . /app
+
+# Establece el directorio de trabajo dentro de la imagen
+WORKDIR /app
+
+# Ejecuta los comandos Maven para compilar y empaquetar la aplicación
+RUN mvn clean package
+
+RUN apk update 
+RUN apk add ffmpeg
+
+# Ahora, utiliza una imagen más ligera para ejecutar la aplicación
+FROM openjdk:17-jdk-alpine
+
+# Se crea el argum
+ento para el archivo .java
+ARG JAR_FILE=/app/target/nuka_server-*.jar
+
+# Copia el archivo JAR de la construcción anterior al directorio de trabajo
+COPY --from=builder ${JAR_FILE} app.jar
+
+# Expone el puerto en el que se ejecutará la aplicación
+EXPOSE 9898
+
+# Comando para ejecutar la aplicación Spring Boot
+CMD ["java", "-jar", "app.jar"]

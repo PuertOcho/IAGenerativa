@@ -1,0 +1,547 @@
+<ion-header class="area">
+  <ion-toolbar style="--background: transparent">
+    <ion-buttons slot="start" style="display: block">
+      <ion-menu-button
+        style="color: var(--ion-color-primary-contrast)"
+      ></ion-menu-button>
+    </ion-buttons>
+    <ion-title style="width: 100%; color: var(--ion-color-primary-contrast)"
+      >Estado</ion-title
+    >
+  </ion-toolbar>
+
+  <ion-toolbar
+    class="toolbarSegmentos"
+    style="--background: transparent; width: 100%; max-width: 100%"
+  >
+    <ion-segment
+      lines="none"
+      class="segmento-estado"
+      [scrollable]="true"
+      [value]="segmento"
+      (ionChange)="segmentoCambiado($event)"
+    >
+      <ion-segment-button
+        [value]="s.id"
+        *ngFor="let s of segmentos"
+        style="border-color: var(--ion-color-primary)"
+      >
+        <ng-template [ngIf]="mostrarSegmento(s.id)">
+          <!-- Aqui podemos restringir los segmentos por privilegios de usuario -->
+          <ion-label>{{ s.name }}</ion-label>
+          <ion-icon
+            [name]="getIconSegmento(s)"
+            [ngStyle]="asignarColorIconoSegmento(s)"
+          ></ion-icon>
+          <ion-badge
+            *ngIf="s && s.badge && s.badge.value"
+            class="badge-segmento"
+            [color]="s.badge.color"
+          >
+            {{ s.badge.value }}
+          </ion-badge>
+        </ng-template>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+
+  <ul class="circles" style="width: 65%">
+    <li id="circulo-1"></li>
+    <li id="circulo-2"></li>
+    <li id="circulo-3"></li>
+    <li id="circulo-4"></li>
+    <li id="circulo-5"></li>
+    <li id="circulo-6"></li>
+    <li id="circulo-7"></li>
+    <li id="circulo-8"></li>
+    <li id="circulo-9"></li>
+    <li id="circulo-10"></li>
+  </ul>
+</ion-header>
+
+<ion-content class="sinBarraDeScroll">
+  <!-- NOTIFICACIONES -->
+  <ng-template
+    [ngIf]="segmento === 'NOTIFICACIONES' && notificaciones.length > 0"
+  >
+    <ion-list class="wrapperListNotificaciones">
+      <div *ngFor="let x of notificaciones">
+        <app-estado-item
+          *ngIf="x"
+          [item]="x"
+          classItem="notificacionYAviso"
+          (notificacionesEvent)="notificacionesEvent($event)"
+          (tareasEvent)="tareasEvent($event)"
+          (calendarioEvent)="calendarioEvent($event)"
+        ></app-estado-item>
+      </div>
+    </ion-list>
+  </ng-template>
+  <ng-template
+    [ngIf]="segmento === 'NOTIFICACIONES' && 0 >= notificaciones.length && !loading"
+  >
+    <div class="alCentro selectItemClass">
+      <ion-icon size="large" name="information-circle-outline"></ion-icon>
+      <ion-label>No hay notificaciones</ion-label>
+    </div>
+  </ng-template>
+  <ng-template
+    [ngIf]="segmento === 'NOTIFICACIONES' && 0 >= notificaciones.length && loading"
+  >
+    <ion-item lines="none" class="loading-item">
+      <ion-spinner name="crescent" class="loading-chat"></ion-spinner>
+    </ion-item>
+  </ng-template>
+
+  <!-- CALENDARIO -->
+  <ng-template [ngIf]="segmento === 'CALENDARIO' && !loading" class="alCentro">
+    <ion-grid class="divCalendario">
+      <ion-row>
+        <ion-col class="datetime-container" size="12">
+          <ion-datetime
+            #calendar
+            size="fixed"
+            locale="es-ES"
+            [firstDayOfWeek]="1"
+            (ionChange)="ionChange($event)"
+            [highlightedDates]="fechasMarcadas"
+            presentation="date"
+            [disabled]="disabledChangePageDatetime"
+          >
+          </ion-datetime>
+        </ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="mostrarDiaSeleccionado()">
+        <ion-col size="12">
+          <ion-item style="--background: none">
+            <ion-label style="margin-left: 25px">
+              {{ labelDiaSeleccionado(diaSeleccionado) }}
+            </ion-label>
+          </ion-item>
+          <div *ngFor="let x of eventosYCitasDiaSeleccionado">
+            <div
+              [ngStyle]="asignarColorEstadoEvento(x.imgMsjPath)"
+              class="circle-estado-evento-estado-item"
+            ></div>
+            <app-estado-item
+              *ngIf="x"
+              [item]="x"
+              classItem="eventosYCitas"
+            ></app-estado-item>
+          </div>
+          <ng-template
+            [ngIf]="0 >= eventosYCitasDiaSeleccionado.length && !loading"
+          >
+            <div class="alCentro div-citasEventos"></div>
+          </ng-template>
+        </ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="!utils.isToday(diaSeleccionado)">
+        <ion-col size="12">
+          <ion-item style="--background: none">
+            <ion-label style="margin-left: 25px">Hoy</ion-label>
+          </ion-item>
+          <div *ngFor="let x of eventosYCitasToday">
+            <div
+              [ngStyle]="asignarColorEstadoEvento(x.imgMsjPath)"
+              class="circle-estado-evento-estado-item"
+            ></div>
+            <app-estado-item
+              *ngIf="x"
+              [item]="x"
+              classItem="eventosYCitas"
+            ></app-estado-item>
+          </div>
+          <ng-template [ngIf]="0 >= eventosYCitasToday.length && !loading">
+            <div class="alCentro div-citasEventos"></div>
+          </ng-template>
+        </ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="!utils.isTomorrow(diaSeleccionado)">
+        <ion-col size="12" style="margin-bottom: 100px">
+          <ion-item style="--background: none">
+            <ion-label style="margin-left: 25px">Mañana</ion-label>
+          </ion-item>
+          <div *ngFor="let x of eventosYCitasTomorrow">
+            <div
+              [ngStyle]="asignarColorEstadoEvento(x.imgMsjPath)"
+              class="circle-estado-evento-estado-item"
+            ></div>
+            <app-estado-item
+              *ngIf="x"
+              [item]="x"
+              classItem="eventosYCitas"
+            ></app-estado-item>
+          </div>
+          <ng-template [ngIf]="0 >= eventosYCitasTomorrow.length && !loading">
+            <div class="alCentro div-citasEventos"></div>
+          </ng-template>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ng-template>
+  <ng-template
+    [ngIf]="segmento === 'CALENDARIO' && 0 >= eventosYCitas.length && loading"
+  >
+    <ion-item lines="none" class="loading-item">
+      <ion-spinner name="crescent" class="loading-chat"></ion-spinner>
+    </ion-item>
+  </ng-template>
+
+  <!-- TAREAS -->
+  <ng-template [ngIf]="segmento === 'TAREAS' && !loading">
+    <ion-grid>
+      <!-- Esto es una barra de busqueda que la usaremos para buscar tareas en el futuro -->
+      <ion-row *ngIf="false">
+        <ion-col size="12">
+          <ion-toolbar style="--background: none; position: absolute">
+            <ion-buttons slot="end" style="margin-right: 20px">
+              <ion-button>
+                <ion-icon name="search-outline" slot="icon-only"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-col>
+      </ion-row>
+
+      <ion-row style="margin-top: 5px">
+        <ion-col size="12">
+          <ion-item style="--background: none">
+            <ion-label style="margin-left: 25px">Por hacer</ion-label>
+          </ion-item>
+          <div *ngFor="let x of tareasPorHacer">
+            <app-estado-item
+              *ngIf="x"
+              [item]="x"
+              classItem="tarea"
+              (tareasEvent)="tareasEvent($event)"
+            ></app-estado-item>
+          </div>
+          <ng-template [ngIf]="0 >= tareas.length && !loading">
+            <div class="alCentro selectItemClass">
+              <ion-icon
+                size="small"
+                name="information-circle-outline"
+              ></ion-icon>
+              <ion-label>No hay tareas</ion-label>
+            </div>
+          </ng-template>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-item style="--background: none">
+            <ion-label style="margin-left: 25px">Tareas</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row style="margin-top: 5px">
+        <ion-col size="12">
+          <div *ngFor="let x of tareasInfo">
+            <app-estado-item
+              *ngIf="x"
+              [item]="x"
+              classItem="tarea"
+              (tareasEvent)="tareasEvent($event)"
+            ></app-estado-item>
+          </div>
+          <ng-template [ngIf]="0 >= tareas.length && !loading">
+            <div class="alCentro selectItemClass">
+              <ion-icon
+                size="small"
+                name="information-circle-outline"
+              ></ion-icon>
+              <ion-label>No hay tareas</ion-label>
+            </div>
+          </ng-template>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ng-template>
+  <ng-template [ngIf]="segmento === 'TAREAS' && loading">
+    <ion-item lines="none" class="loading-item">
+      <ion-spinner name="crescent" class="loading-chat"></ion-spinner>
+    </ion-item>
+  </ng-template>
+
+  <!-- DISPOSITIVOS -->
+  <ng-template [ngIf]="segmento === 'DISPOSITIVOS' && !loading">
+    <ion-segment
+      class="segmento-estado"
+      [scrollable]="true"
+      (ionChange)="segmentoDispositivosCambiado($event)"
+    >
+      <ion-segment-button [value]="d.id" *ngFor="let d of dispositivos">
+        <ion-label>{{ d.name }}</ion-label>
+        <ion-icon [name]="d.icon"></ion-icon>
+      </ion-segment-button>
+    </ion-segment>
+
+    <ng-template [ngIf]="segmentoDispositivo" [ngIfElse]="SelectItem">
+      <div>
+        <span>{{ segmentoDispositivo.name }}</span> <br />
+        <span>{{ segmentoDispositivo.icon }}</span> <br />
+        <span>{{ segmentoDispositivo.id }}</span> <br />
+      </div>
+    </ng-template>
+
+    <ng-template #SelectItem>
+      <div class="alCentro selectItemClass">
+        <ion-icon size="large" name="information-circle-outline"></ion-icon>
+        <ion-label>Seleccione un dispositivo</ion-label>
+      </div>
+    </ng-template>
+  </ng-template>
+  <ng-template [ngIf]="segmento === 'DISPOSITIVOS' && loading">
+    <ion-item lines="none" class="loading-item">
+      <ion-spinner name="crescent" class="loading-chat"></ion-spinner>
+    </ion-item>
+  </ng-template>
+
+  <!-- Boton flotante para agregar TAREAS o Eventos al calendario -->
+  <ng-template
+    [ngIf]="(segmento === 'CALENDARIO' && this.diaSeleccionado) || segmento === 'TAREAS'"
+  >
+    <ion-fab
+      slot="fixed"
+      vertical="bottom"
+      horizontal="end"
+      class="fabButtonPosition"
+    >
+      <ion-fab-button id="open-modal" (click)="abrirCitaOTareaModal(segmento)">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+
+    <!-- Modal De calendario (Añadir evento) -->
+    <ion-modal
+      class="modal-calendario"
+      [isOpen]="isCitaModalOpen"
+      (willDismiss)="onWillDismiss($event)"
+    >
+      <ng-template>
+        <ion-content>
+          <ion-toolbar>
+            <ion-title class="titulo-modales"
+              >{{ labelDiaSeleccionado(diaSeleccionado) }}
+            </ion-title>
+            <ion-buttons slot="end">
+              <ion-button (click)="cancelModal()">
+                <ion-icon name="close-circle-outline"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+
+          <ion-grid>
+            <ion-row>
+              <ion-col size="10" class="containerBotonModal">
+                <!--
+                <ion-textarea
+                  autoGrow
+                  rows="1"
+                  placeholder="Titulo evento"
+                  [(ngModel)]="textoModal"
+                ></ion-textarea>
+              -->
+
+                <textarea name="text" [(ngModel)]="textoModal" placeholder="Titulo evento"  
+                wrap="soft"> 
+              </textarea>
+              
+              </ion-col>
+
+              <ion-col size="2">
+                <div
+                  style="margin-top: 10px"
+                  (click)="abrirPopOverColores()"
+                  [ngStyle]="asignarColorEstadoEventoNuevo()"
+                  class="circle-estado-evento"
+                ></div>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col size="12" class="containerBotonModal">
+                <ion-datetime
+                  presentation="time"
+                  [preferWheel]="true"
+                ></ion-datetime>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col size="12" class="containerBotonModal">
+                <ion-button (click)="agregarCitaOTarea()">Confirmar</ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
+
+    <!-- Modal De tareas -->
+    <ion-modal
+      class="modalTareas"
+      [isOpen]="isTareaModalOpen"
+      (willDismiss)="onWillDismiss($event)"
+    >
+      <ng-template>
+        <ion-content>
+          <ion-toolbar>
+            <ion-title class="titulo-modales">Añadir tarea</ion-title>
+            <ion-buttons slot="end">
+              <ion-button (click)="cancelModal()">
+                <ion-icon name="close-circle-outline"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+
+          <ion-grid>
+            <ion-row>
+              <ion-col size="12">
+                <ion-label>Añadir usuario: </ion-label>
+                <ion-item lines="full">
+                  <ion-input
+                    type="text"
+                    [(ngModel)]="usernameModal"
+                  ></ion-input>
+                  <ion-button (click)="agregarUsername(usernameModal)"
+                    >Añadir</ion-button
+                  >
+                </ion-item>
+                <ion-chip *ngFor="let u of listUsuarioModal">
+                  <ion-label>{{ u }}</ion-label>
+                  <ion-icon
+                    name="close-circle"
+                    (click)="eliminarUsername(u)"
+                  ></ion-icon>
+                </ion-chip>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col size="12">
+                <ion-label>Descripción</ion-label>
+                <ion-item lines="full">
+                  <ion-input type="text" [(ngModel)]="textoModal"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col size="12">
+                <ion-label>Cada cuanto se repite la tarea (dias)</ion-label>
+                <ion-item lines="full">
+                  <ion-input
+                    type="number"
+                    [(ngModel)]="diasRepeticionModal"
+                  ></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col size="12" class="containerBotonModal">
+                <ion-button (click)="agregarNuevaTareaInfo()"
+                  >Confirmar</ion-button
+                >
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
+  </ng-template>
+</ion-content>
+
+<!-- Modal De calendario (Modificar evento) -->
+<ion-modal
+  class="modal-modificar-calendario"
+  [isOpen]="isModificarCitaModalOpen"
+  (willDismiss)="onWillDismissModificarCita($event)"
+  *ngIf="eventoParaModificar"
+>
+  <ng-template>
+    <ion-content>
+      <ion-toolbar>
+        <ion-title class="titulo-modales"> 
+          Modificar evento
+        </ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="cancelModal()">
+            <ion-icon name="close-circle-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col size="10" class="containerBotonModal">
+            <textarea name="text" [(ngModel)]="eventoParaModificar.texto" placeholder="Mensaje"  
+              wrap="soft"> 
+            </textarea>
+          </ion-col>
+
+          <ion-col size="2" class="alCentro">
+            <div
+              style="margin-top: 10px;"
+              (click)="abrirPopOverColores()"
+              [ngStyle]="asignarColorEstadoEvento(eventoParaModificar.imgMsjPath)"
+              class="circle-estado-evento"
+            ></div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="12" class="containerBotonModal">
+            <ion-datetime
+              presentation="date-time"
+              [preferWheel]="true"
+              value="{{ eventoParaModificar.fecha | formatTimestampFecha : 'AAAA-MM-DDThh:mm' }}"   
+              hour-cycle="h23"
+              (ionChange)="ionChangeModificarFecha($event)"
+            ></ion-datetime>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="12" class="containerBotonModal">
+            <ion-button (click)="modificarCitaOTarea()">Confirmar</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-content>
+  </ng-template>
+</ion-modal>
+
+<!-- popover de los coles en modal de eventosYCitas -->
+<ion-popover
+  style="--width: fit-content"
+  [isOpen]="isCitaColoresModalOpen"
+  (willDismiss)="onWillDismissColoresModal($event)"
+  side="left"
+  alignment="start"
+>
+  <ng-template>
+    <ion-content>
+      <ion-list scrollY="true">
+        <ion-item
+          lines="full"
+          style="min-width: 120px"
+          *ngFor="let c of coloresYEtiquetas"
+          (click)="cambiarColorEstadoEvento(c)"
+        >
+          <div
+            [ngStyle]="asignarColorEstadoEventoNuevo(c)"
+            class="circle-estado-evento"
+          ></div>
+          <span> {{ c.etiqueta }} </span>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ng-template>
+</ion-popover>

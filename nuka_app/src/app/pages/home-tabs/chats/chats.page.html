@@ -1,0 +1,259 @@
+<ion-header>
+
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Chats</ion-title>
+  </ion-toolbar>
+
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12">
+          <ion-toolbar style="--border-width: 0;">
+            <app-barra-busqueda-item [busquedaMsj]="busquedaMsj" [chatsList]="chatsList" (textoBusquedaEvent)="handleInputBuscador($event)"></app-barra-busqueda-item>
+            <ion-buttons slot="end" *ngIf="!textoBusqueda" style="margin-top: 5px;">
+              <ion-button (click)="agregarChat()">
+                <ion-icon slot="icon-only" name="add"></ion-icon>
+              </ion-button>
+
+              <ion-button (click)="toggleFiltroActivo('incluir')">
+                <ion-icon slot="icon-only" name="filter" [color]="asignarColorFiltroSeleccionado('incluir')"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+          </ion-toolbar>  
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <div *ngIf="filtroIncluirTagActivo" class="filtroChats">
+      <!-- <ion-label class="encabezadoFlotante">Chats con tags:</ion-label> -->
+      <ion-list>
+          <ion-select [disabled]="!(tagsDisponibles.length > 0)"
+            interface="popover"
+            fill="outline"
+            [multiple]="true"
+            toggleIcon="add"
+            expandedIcon="remove"
+            size="cover"
+            [value]="tagsEnFiltro"
+            (ionChange)="ionChangeIonSelect($event)"
+            (ionDismiss)="ionDismissIonSelect($event)"
+            [interfaceOptions]="{ cssClass: 'popover-wide' }">           
+            <ion-select-option  *ngFor="let t of tagsDisponibles" [value]="t" >
+              <ion-label>{{ t }}</ion-label> 
+            </ion-select-option>
+          </ion-select>
+          <ion-chip *ngFor="let t of tagsEnFiltro">
+            <ion-label> {{ t }} </ion-label>
+          </ion-chip> 
+
+          <ion-chip *ngIf="filtroIncluirTagActivo && tagsEnFiltro && tagsEnFiltro.length > 0" (click)="eliminartagsEnFiltro()" style="background: var(--ion-color-medium);">
+            <ion-icon name="remove" fill="clear"></ion-icon>
+          </ion-chip> 
+
+      </ion-list>
+    </div>
+
+    <!--
+    <div *ngIf="filtroExcluirTagActivo" class="filtroChats">
+      <ion-label>Filtrar chat sin tags</ion-label>
+      <ion-list>
+          <ion-chip *ngFor="let t of tags">
+            <ion-label> {{ t }} </ion-label>
+          </ion-chip>
+          <ion-chip color="success">
+            <ion-icon name="add" (click)="modificarTagsExcluir()"></ion-icon>
+          </ion-chip>
+      </ion-list>
+    </div>
+
+    <div *ngIf="filtroFechaActivo" class="filtroChats filtroFecha">
+      <ion-label>Filtro por fecha esta por implementar</ion-label>
+    </div>
+-->
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="contentChats sinBarraDeScroll">
+
+  <ion-refresher slot="fixed" [pullFactor]="0.4" [pullMin]="50" [pullMax]="200" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content
+        pullingIcon="refresh-outline"
+        refreshingSpinner="dots"
+        class="iconRefresh">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <ng-container *ngIf="!loading">
+    <ion-list class="ion-padding">
+      <ion-item-group style="background: transparent;">
+        <ion-item-divider sticky class="chats-group-divider">
+          <ion-button fill="clear" (click)="toggleMostrarFavoritos()" class="botonMostrarChatFavoritos">
+            <ion-icon *ngIf="mostrarFavoritos" slot="icon-only" name="eye-outline"></ion-icon>
+            <ion-icon *ngIf="!mostrarFavoritos" slot="icon-only" name="eye-off-outline"></ion-icon>
+          </ion-button>
+          <ion-label>  
+            Favoritos
+          </ion-label>
+        </ion-item-divider>
+
+      <ion-item-sliding detail="false" lines="full"
+        class="message-item-sliding ion-item-chats"
+        *ngFor="let chat of chatsListFavoritos"
+        #slidingItem (ionDrag)="chatDraged($event, chat)">
+
+        <ion-item button detail="false" lines="full" class="ion-item-chats">
+
+          <ng-template [ngIf]="utils.mostrarImagenChat(chat)" [ngIfElse]="onlyFavoriteBoton">
+            <div class="avatarYFavorito">
+              <ion-avatar>
+                <img [src]="getChatImages(chat)"/>
+              </ion-avatar>
+  
+              <ion-button class="botonFavorito" fill="clear">
+                <ion-icon *ngIf="!chat.favorito" slot="icon-only" name="star-outline"></ion-icon>
+                <ion-icon *ngIf="chat.favorito" slot="icon-only" name="star"></ion-icon>
+              </ion-button>
+            </div>
+          </ng-template>
+
+          <ng-template #onlyFavoriteBoton>
+            <div class="soloFavorito" *ngIf="chat.favorito == true"> 
+              <ion-button class="botonFavorito" fill="clear">
+                <ion-icon *ngIf="chat.favorito" slot="icon-only" name="star" color="primary"></ion-icon>
+              </ion-button>
+            </div>
+          </ng-template>
+
+          <ion-grid (click)="redirigirAChatdetails(chat.id)" routerdirection="forward">
+            <ion-row>
+              <ion-col>
+                <ion-text class="ion-text-start tituloChat">{{ chat.summary.length > 50 ? chat.summary.slice(0, 50) + '...' : chat.summary }}</ion-text>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col class="chipsYFecha">
+                <div class="chips chip-container" >
+                  <ion-badge *ngFor="let m of getTagsPorChat(chat)"> {{ m }} </ion-badge>
+                </div>
+
+                <div class="fecha">
+                  <ion-text color="medium">{{ chat.fechaUltimoMsj | formatTimestampFecha : 'DD/MM hh:mm'  }}</ion-text>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-item>
+
+                  <!-- Reply slide -->
+                  <ion-item-options side="end" class="no-border" lines="none">
+                    <ion-item-option *ngIf="chat && chat.summary !== 'GENERAL'" lines="none" (click)="eliminarNukaChat(chat, slidingItem)">
+                      <!-- <ion-icon style="margin-top: 10px;" slot="icon-only" name="trash-outline" color="danger"></ion-icon> -->
+                      <img src="assets/icon/basura.gif" style="height: 32px; width: 32px; margin-top: 10px;"/>
+                    </ion-item-option>
+        
+                    <ion-item-option *ngIf="chat" lines="none" (click)="toogleFavoriteStatus(chat)">
+                      <ion-icon style="margin-top: 10px;" *ngIf="!chat.favorito" slot="icon-only" name="star-outline" color="primary"></ion-icon>
+                      <ion-icon style="margin-top: 10px;" *ngIf="chat.favorito" slot="icon-only" name="star" color="primary"></ion-icon>
+                    </ion-item-option>
+                  </ion-item-options>
+
+
+      </ion-item-sliding>
+
+      </ion-item-group>
+      
+      <ion-item-group style="background: transparent;" *ngFor="let chatKeyGroup of chatsListKeys">
+        <ion-item-divider sticky class="chats-group-divider">
+          <ion-label>
+            {{ chatKeyGroup }}
+          </ion-label>
+        </ion-item-divider>
+
+        <ion-item-sliding button detail="false" lines="full"
+          class="message-item-sliding ion-item-chats" 
+          *ngFor="let chat of chatsListByTime.get(chatKeyGroup).messages"
+          #slidingItem (ionDrag)="chatDraged($event, chat)">
+  
+          <ion-item detail="false" lines="full" class="ion-item-chats">
+
+            <ng-template [ngIf]="utils.mostrarImagenChat(chat)" [ngIfElse]="onlyFavoriteBoton">
+              <div class="avatarYFavorito">
+                <ion-avatar>
+                  <img [src]="getChatImages(chat)"/>
+                </ion-avatar>
+    
+                <ion-button class="botonFavorito" fill="clear">
+                  <ion-icon *ngIf="!chat.favorito" slot="icon-only" name="star-outline"></ion-icon>
+                  <ion-icon *ngIf="chat.favorito" slot="icon-only" name="star"></ion-icon>
+                </ion-button>
+              </div>
+            </ng-template>
+
+            <ng-template #onlyFavoriteBoton>
+              <div class="soloFavorito" *ngIf="chat.favorito == true"> 
+                <ion-button class="botonFavorito" fill="clear">
+                  <ion-icon *ngIf="chat.favorito" slot="icon-only" name="star" color="primary"></ion-icon>
+                </ion-button>
+              </div>
+            </ng-template>
+
+            <ion-grid (click)="redirigirAChatdetails(chat.id)" routerdirection="forward">
+              <ion-row>
+                <ion-col>
+                  <ion-text class="ion-text-start tituloChat">{{ chat.summary.length > 50 ? chat.summary.slice(0, 150) + '...' : chat.summary }}</ion-text>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col class="chipsYFecha">
+                  <div class="chips chip-container" >
+                    <ion-badge *ngFor="let m of getTagsPorChat(chat)"> {{ m }} </ion-badge>
+                  </div>
+
+                  <div class="fecha">
+                    <ion-text color="medium">{{ chat.fechaUltimoMsj | formatTimestampFecha : 'DD/MM hh:mm'  }}</ion-text>
+                  </div>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+      
+          <!-- Reply slide -->
+          <ion-item-options side="end" class="no-border" lines="none">
+            <ion-item-option *ngIf="chat && chat.summary !== 'GENERAL'" lines="none" (click)="eliminarNukaChat(chat, slidingItem)">
+              <img src="assets/icon/basura.gif" style="height: 32px; width: 32px; margin-top: 10px;"/>
+              <!-- <ion-icon style="margin-top: 10px;" slot="icon-only" name="trash-outline" color="danger"></ion-icon> -->
+            </ion-item-option>
+
+            <ion-item-option *ngIf="chat" lines="none" (click)="toogleFavoriteStatus(chat)">
+              <ion-icon style="margin-top: 10px;" *ngIf="!chat.favorito" slot="icon-only" name="star-outline" color="primary"></ion-icon>
+              <ion-icon style="margin-top: 10px;" *ngIf="chat.favorito" slot="icon-only" name="star" color="primary"></ion-icon>
+            </ion-item-option>
+          </ion-item-options>
+          
+        </ion-item-sliding>
+
+      </ion-item-group>
+    </ion-list>
+  </ng-container>
+  <ion-spinner *ngIf="loading" name="crescent" class="loading-chat"></ion-spinner>
+</ion-content>
+
+<!-- popover de los coles en modal de eventosYCitas -->
+<ion-popover #miPopover size="cover">
+  <ng-template>
+    <ion-content>
+        <ion-list>
+
+          <ion-item lines="none" *ngFor="let t of tagsDisponibles">
+            <ion-checkbox labelPlacement="end" [checked]="checkIsFilterTagChecked(t)" [value]="t" (ionChange)="checkboxFiltroIncluirTagCambiado($event)">{{t}}</ion-checkbox>
+            <ion-label>{{ t }}</ion-label>
+          </ion-item>
+
+        </ion-list>
+    </ion-content>
+  </ng-template>
+</ion-popover>

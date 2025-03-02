@@ -1,0 +1,38 @@
+ion-item {
+    //--background: #19422d;
+    //--color: #fff;
+
+    padding: 5px;
+    margin-top: 2px;
+    //--border-color: #000;
+    //--border-style: solid;
+    //--border-width: 2px;
+  
+    --border-radius: 20px;
+  
+    --ripple-color: purple;
+  
+    --detail-icon-color: white;
+    --detail-icon-opacity: 1;
+    --detail-icon-font-size: 20px;
+}
+
+app-loading-skeleton-item {
+    width: 100%;
+}
+
+ion-card-title {
+    font-size: medium;
+}
+
+.class-empty {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    padding: 0;
+}

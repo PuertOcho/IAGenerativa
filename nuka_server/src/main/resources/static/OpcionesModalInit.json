@@ -1,0 +1,30 @@
+{
+	"opciones": [
+		{
+			"etiqueta": "AUDIO",
+			"opciones": [
+				{
+					"id": "AUDIO_REPRODUCCION_AUTOMATICA",
+					"etiqueta": "Habilitar reproduccion automática",
+					"tipo": "CHECKBOX"
+				}
+			]
+		},
+		{
+			"etiqueta": "GENERAL",
+			"opciones": [
+				{
+					"id": "NOMBRE_CHAT",
+					"etiqueta": "Nombre de Chat",
+					"tipo": "INPUT"
+				},
+				{
+					"id": "GUARDAR",
+					"etiqueta": "Guardar",
+					"tipo": "BOTON",
+					"valor": ["guardarOpcionesChat"]
+				}
+			]
+		}
+	]
+}

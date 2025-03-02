@@ -1,0 +1,74 @@
+<ng-template [ngIf]="loading && habilitarSplashScreen">
+  <div *ngIf="loading && habilitarSplashScreen" [ngClass]="getClassSplashDiv()" class="SplashDiv">
+    <img id="splashImg" *ngIf="!mostrarSplashGif && splashGifTerminado" src="/assets/icon/robot5.png" muted style="width: 200px; height: 200px;"/>
+    <img id="splashGif" *ngIf="mostrarSplashGif && !splashGifTerminado" src="/assets/icon/robot5.gif" muted style="width: 200px; height: 200px;"/> 
+  </div>
+</ng-template>
+
+<ng-template [ngIf]="sinConexion">
+  <div class="sin-conexion">
+    <img src="/assets/icon/no-internet.gif" muted/>
+  </div>
+</ng-template>
+
+<ion-app *ngIf="!loading">
+  <!--  <ion-split-pane contentId="main-content" [when]="!(utils.getTipoPantalla() == 'movil')"> -->
+    <ion-menu contentId="main-content" type="push">
+      <ion-content>
+          <ion-item class="status-user-bar" *ngIf="usuario != null" lines="none">
+            <ion-avatar slot="start">
+              <!-- <img src="assets/icon/avatarGengar.gif"/> --> 
+              <img [src]="getImagenUsuario()"/>
+            </ion-avatar>
+            <ion-label>
+              {{ usuario.username }}
+            </ion-label>
+          </ion-item>
+
+          <ion-menu-toggle auto-hide="false">
+            <ion-item routerDirection="root" routerLink="/home-tabs" lines="none" detail="false" routerLinkActive="selected">
+              <img src="assets/icon/brain.png" style="height: 24px; width: 24px;"/>
+              <ion-label style="margin-left: 10px;"> Nuka </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+
+          <ion-accordion-group [multiple]="true" [value]="[]">
+            <ion-accordion value="first">
+              <ion-item slot="header" color="light">
+                <ion-icon aria-hidden="true" slot="start" name="home-outline"></ion-icon>
+                <ion-label>CASA</ion-label>
+              </ion-item>
+              <div class="ion-padding" slot="content" (click)="redirectTo('shopping-tabs')">
+                <ion-icon aria-hidden="true" slot="start" name="cart-outline" style="font-size: 20px;"></ion-icon>
+                <ion-label style="margin-left: 10px;"> Compra </ion-label>
+              </div>
+              <!--
+              <div class="ion-padding" slot="content">segundo Content</div>
+              <div class="ion-padding" slot="content">tercero Content</div>
+              -->
+            </ion-accordion>
+
+            <ion-accordion value="third" [disabled]="true">
+              <ion-item slot="header" color="light">
+                <ion-label>SEGURIDAD</ion-label>
+              </ion-item>
+            <!--
+              <div class="ion-padding" slot="content">Third Content</div>
+            -->
+            </ion-accordion>
+          </ion-accordion-group>
+
+          <ion-menu-toggle auto-hide="false">
+            <ion-item routerDirection="root" routerLink="/home" lines="none" detail="false" routerLinkActive="selected" [disabled]="true">
+              <ion-icon aria-hidden="true" slot="start" ios="person-outline" md="person-sharp"></ion-icon>
+              <ion-label> Ajustes </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+
+      </ion-content>
+    </ion-menu>
+
+    <ion-router-outlet id="main-content"></ion-router-outlet>
+
+  <!-- </ion-split-pane> -->
+</ion-app>

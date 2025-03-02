@@ -1,0 +1,39 @@
+<ng-template [ngIf]="!loading " [ngIfElse]="loadingItem">
+    <div class="custom-slider" *ngIf="checkImagenes()" on-swipe-left="goToSlide(currentSlide + 1)" on-swipe-right="goToSlide(currentSlide - 1)" >
+
+      <div class="slides">
+        <ion-icon size="large" name="arrow-back-outline" 
+          class="button-images icon-images" slot="inicio" fill="outline" 
+          (click)="goToSlide(currentSlide - 1)"
+          *ngIf="!(currentSlide == 0)"></ion-icon>
+  
+        <div class="slide" *ngFor="let imagenUrl of imagenUrls" [style.transform]="'translateX(' + (-currentSlide * 100) + '%)'">
+          <img [src]="imagenUrl" tappable (click)="abrirImagenTamCompleto(imagenUrl)">
+        </div>
+  
+        <ion-icon size="large" name="arrow-forward-outline" 
+          class="button-images icon-images" slot="fin" fill="outlined" 
+          (click)="goToSlide(currentSlide + 1)"
+          *ngIf="!(currentSlide >= numeros.length-1)"></ion-icon>
+      </div>
+  
+      <div class="pagination">
+        <span
+          class="dot"
+          *ngFor="let slide of numeros; let i = index"
+          [class.active]="currentSlide === i"
+          (click)="goToSlide(i)"></span>
+      </div>
+    </div>
+</ng-template>
+
+
+<ng-template #loadingItem>
+  <ion-grid class="imagen-grid" *ngIf="!checkImagenes()">
+    <ion-row>
+      <ion-col size="12">
+        <ion-spinner name="crescent" class="loading-chat"></ion-spinner>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ng-template> 

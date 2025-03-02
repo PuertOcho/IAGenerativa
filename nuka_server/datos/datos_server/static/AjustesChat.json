@@ -1,0 +1,215 @@
+{
+	"opciones": [
+		{
+			"etiqueta": "GENERAL",
+			"opciones": [
+				{
+					"id": "GENERAL_AUTONOMBRAR_CHAT",
+					"etiqueta": "Se asigna titulo al chat automaticamente",
+					"tipo": "CHECKBOX",
+					"valor": ["true"]
+				},
+				{
+					"id": "GENERAL_NOMBRE_CHAT",
+					"etiqueta": "Nombre de Chat",
+					"tipo": "INPUT",
+					"valor": ["Chat sin titulo"]
+				},
+				{
+					"id": "GENERAL_TAGS",
+					"etiqueta": "Topicos del chat",
+					"tipo": "SELECT_MULTIPLE",
+					"datos": [
+					  "Trabajo",
+					  "Programacion",
+					  "Servidor",
+					  "Educacion",
+					  "Salud",
+					  "Viajes",
+					  "Deportes",
+					  "Entretenimiento",
+					  "Ciencia",
+					  "Politica",
+					  "Economia",
+					  "Musica",
+					  "Peliculas",
+					  "Libros",
+					  "Literatura",
+					  "Videojuegos",
+					  "Moda",
+					  "Alimentacion",
+					  "Fitness",
+					  "Medio ambiente",
+					  "Fotografia",
+					  "Arte",
+					  "Cultura",
+					  "Noticias",
+					  "Historia",
+					  "Religion",
+					  "Psicologia",
+					  "Automoviles",
+					  "Viajes",
+					  "Nutricion",
+					  "Redes Sociales",
+					  "Marketing",
+					  "Negocios",
+					  "Finanzas",
+					  "Desarrollo Personal",
+					  "Idiomas",
+					  "Ciencia Ficcion",
+					  "Historia Mundial",
+					  "Geografia",
+					  "Astronomia",
+					  "Naturaleza",
+					  "Diseno Grafico",
+					  "Arquitectura",
+					  "Filosofia",
+					  "Deportes de Aventura",
+					  "Cocina",
+					  "Bricolaje",
+					  "Ecologia",
+					  "Tecnologia Movil", "App",
+					  "Educacion Financiera",
+					  "Derechos Humanos",
+					  "Cine Independiente",
+					  "Economia Circular",
+					  "Emprendimiento",
+					  "Juegos de Mesa", "Juegos",
+					  "Psicologia Positiva",
+					  "Educacion Ambiental",
+					  "Ciencia de Datos",
+					  "Voluntariado",
+					  "Automatizacion",
+					  "Sostenibilidad",
+					  "Ajedrez",
+					  "Inteligencia Artificial",
+					  "Fotografia de Naturaleza",
+					  "Espiritualidad",
+					  "Peliculas de Terror",
+					  "Fitness en Casa",
+					  "Ciudades Inteligentes",
+					  "Periodismo Ciudadano",
+					  "Poesia",
+					  "Viajes en Familia",
+					  "Teatro",
+					  "Ciencia de los Alimentos",
+					  "Biodiversidad",
+					  "Yoga",
+					  "Peliculas Documentales",
+					  "Ciencia Forense",
+					  "Fotografia de Bodas",
+					  "Moda Sostenible",
+					  "Arqueologia",
+					  "Robotica",
+					  "Viajes en Bicicleta",
+					  "Neurociencia",
+					  "Peliculas de Animacion",
+					  "Escritura Creativa",
+					  "Ciclismo",
+					  "Filantropia",
+					  "Literatura Infantil",
+					  "Energias Renovables",
+					  "Danza",
+					  "Biografias",
+					  "Viajes de Aventura"
+					]
+				},
+				{
+					"id": "GENERAL_FOTO_CHAT",
+					"etiqueta": "Foto de Chat",
+					"tipo": "SELECT_IMG"
+				},
+				{
+					"id": "GENERAL_GUARDAR_AJUSTES_CHAT",
+					"etiqueta": "Guardar",
+					"tipo": "BOTON",
+					"valor": ["guardarAjustesChat"]
+				}
+			]
+		},
+		{
+			"etiqueta": "CHAT",
+			"opciones": [
+				{
+					"id": "CHAT_CONTEXTO_COMPLETO",
+					"etiqueta": "Habilitar tener todo el chat de contexto",
+					"tipo": "CHECKBOX",
+					"valor": ["true"]
+				},
+				{
+					"id": "CHAT_NUMERO_CHATS_CONTEXTO",
+					"etiqueta": "Numero de mensajes anteriores que se tienen en cuenta",
+					"tipo": "RANGE",
+					"datos": ["10"],
+					"valor": ["10"]
+				},
+				{
+					"id": "CHAT_ROL",
+					"etiqueta": "Rol del asistente",
+					"tipo": "INPUT"
+				},
+				{
+					"id": "CHAT_ESTRUCTURA_RESPUESTA",
+					"etiqueta": "Estructura de la respuesta del asistente",
+					"tipo": "INPUT"
+				},
+				{
+					"id": "CHAT_MODELO",
+					"etiqueta": "Modelo del lenguaje utilizado",
+					"tipo": "SELECT_SINGLE",
+					"datos": ["gpt-3.5-turbo", "gpt-4", "gpt-4-turbo", "gpt-4o", "gpt-4o-mini", "o1-preview", "o1-mini"],
+					"valor": ["gpt-4o-mini"]
+				}
+			]
+		},
+		{
+			"etiqueta": "AUDIO",
+			"opciones": [
+				{
+					"id": "AUDIO_REPRODUCCION_AUTOMATICA",
+					"etiqueta": "Habilitar reproduccion automática",
+					"tipo": "CHECKBOX"
+				},
+				{
+					"id": "AUDIO_FORZAR_GENERAR_AUDIO",
+					"etiqueta": "Se obtiene audio en cada mensaje",
+					"tipo": "CHECKBOX"
+				},
+				{
+					"id": "AUDIO_VOZ",
+					"etiqueta": "Voz usada por el asistente",
+					"tipo": "SELECT_SINGLE",
+					"datos": ["Abril", "Elvira", "Alvaro", "Arnau", "Dario", "Elias", "Estrella", "Irene", "Laia", "Lia", "Nil", "Saul", "Teo", "Triana", "Vera"],
+					"valor": ["Alvaro"]
+				}	
+			]
+		},
+		{
+			"etiqueta": "AJUSTES RAPIDOS",
+			"opciones": [
+				{
+					"id": "AJUSTES_RAPIDOS_MOSTRAR_AJUSTES",
+					"etiqueta": "Mostrar boton flotante para ajustes rapidos",
+					"tipo": "CHECKBOX"
+				},
+				{
+					"id": "AJUSTES_RAPIDOS_MOSTRAR_ACTUALIZAR",
+					"etiqueta": "Mostrar boton flotante para actualizar Chat",
+					"tipo": "CHECKBOX"
+				},
+				{
+					"id": "AJUSTES_RAPIDOS_MOSTRAR_ARBOL_DOCUMENTOS",
+					"etiqueta": "Mostrar boton flotante para arbol de documentos",
+					"tipo": "CHECKBOX"
+				},
+				{
+					"id": "AJUSTES_RAPIDOS_OPCIONES",
+					"etiqueta": "Seleccionar y ordenar elementos de ajustes rapidos que se muestran",
+					"tipo": "SELECT_MULTIPLE_AND_REORDER",
+					"datos": ["CHAT_NUMERO_CHATS_CONTEXTO", "CHAT_MODELO", "AUDIO_VOZ", "AUDIO_FORZAR_GENERAR_AUDIO", "AUDIO_REPRODUCCION_AUTOMATICA"],
+					"valor": []
+				}
+			]
+		}
+	]
+}

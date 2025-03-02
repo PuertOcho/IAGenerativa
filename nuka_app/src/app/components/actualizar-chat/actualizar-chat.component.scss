@@ -1,0 +1,36 @@
+.div-opcion-flotante-chat {
+
+    position: fixed;
+    top: 90px;
+    right: 155px;
+    z-index: 8;
+    border-radius: 50%;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 5px;
+
+    background-color: var(--ion-color-primary);
+
+    height: 60px;
+    width: 60px;
+    overflow: hidden;
+
+    display: flex;
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    
+    ion-button {
+        width: 100%;
+        max-width: 60px;
+        padding: 0;
+        margin: 0;
+
+        ion-icon {
+            z-index: 8;
+            color: var(--ion-color-primary-contrast);
+        }
+    }
+
+    overflow: auto;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}

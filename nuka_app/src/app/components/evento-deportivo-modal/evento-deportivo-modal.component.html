@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ equipoLocal }} - {{ equipoVisitante }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <div class="event-wrapper">
+    <div class="local-events">
+      <h3>{{ equipoLocal }} (Local)</h3>
+      <div *ngFor="let evento of eventoDeportivos">
+        <div *ngIf="evento.equipo === 'LOCAL' && evento.minuto">
+          {{ evento.minuto }} - {{ evento.jugador }} - <img [src]="getIconoTipoEvento(evento.evento)" style="height: 15px; width: 15px;" muted/>
+        </div>
+      </div>
+    </div>
+    <div class="visitante-events">
+      <h3>{{ equipoVisitante }} (Visitante)</h3>
+      <div *ngFor="let evento of eventoDeportivos">
+        <div *ngIf="evento.equipo === 'VISITANTE' && evento.minuto">
+          {{ evento.minuto }} - {{ evento.jugador }} - <img [src]="getIconoTipoEvento(evento.evento)" style="height: 15px; width: 15px;" muted/>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="separator"></div>
+
+  <div>
+    <div>
+      <h3>{{ equipoLocal }} (Local)</h3>
+      <div *ngFor="let evento of eventoDeportivos">
+        <div *ngIf="evento.equipo === 'LOCAL' && evento.estadistica">
+          {{ evento.evento }} : {{ evento.estadistica }}
+        </div>
+      </div>
+    </div>
+    <div class="separator"></div>
+    
+    <div>
+      <h3>{{ equipoVisitante }} (Visitante)</h3>
+      <div *ngFor="let evento of eventoDeportivos">
+        <div *ngIf="evento.equipo === 'VISITANTE' && evento.estadistica">
+          {{ evento.evento }}: {{ evento.estadistica }}
+        </div>
+      </div>
+  </div>
+</div>
+
+</ion-content>

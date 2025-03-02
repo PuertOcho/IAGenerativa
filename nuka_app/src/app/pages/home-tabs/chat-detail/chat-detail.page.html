@@ -1,0 +1,321 @@
+<ion-header>
+  <!--  +++++++++++++++++ Opciones flotantes +++++++++++++++++ -->
+
+  <!-- Opcion ajustes rapidos -->
+  <ng-template [ngIf]="mostrarBotonFlotanteAjustesRapidos">
+    <app-opciones-rapidas-item
+      style="position: absolute"
+      *ngIf="nukaChat"
+      [chat]="nukaChat"
+      [opcionesRapidasCompleta]="opcionesRapidasCompleta"
+      [mostrarBarraBusqueda]="mostrarBarraBusqueda"
+    ></app-opciones-rapidas-item>
+  </ng-template>
+
+  <!-- Opcion directorios -->
+  <ng-template [ngIf]="mostrarBotonFlotanteArbolDocumentos">
+    <ion-icon
+      *ngIf="usarDirectoriosObsidian && !loading && !loadingArbolArchivos"
+      class="iconoCheckboxDirectorios"
+      name="checkmark-outline"
+      style="background: var(--ion-color-success); max-width: 20px"
+      (click)="toggleCheckboxDirectorios()"
+    ></ion-icon>
+    <ion-icon
+      *ngIf="!usarDirectoriosObsidian && !loading && !loadingArbolArchivos"
+      class="iconoCheckboxDirectorios"
+      name="close-outline"
+      style="background: var(--ion-color-danger); max-width: 20px"
+      (click)="toggleCheckboxDirectorios()"
+    ></ion-icon>
+    <ion-icon
+      *ngIf="!loading && loadingArbolArchivos"
+      class="iconoCargaArbolArchivos"
+      name="cloudy-outline"
+    ></ion-icon>
+
+  </ng-template>
+
+  <!-- Opcion actualizar chat -->
+  <ng-template [ngIf]="mostrarBotonFlotanteActualizar">
+    <div *ngIf="!loading" class="div-opcion-flotante-chat-actualizar">
+      <ion-button fill="clear" (click)="sincronizarChat()">
+        <ion-icon slot="icon-only" name="sync"></ion-icon>
+      </ion-button>
+    </div>
+  </ng-template>
+
+    <!-- Opcion borrar mensajes -->
+    <ng-template [ngIf]="borrarMensajes">
+
+      <div *ngIf="!loading" class="div-opcion-flotante-borrar-mensajes-cancelar">
+        <ion-button fill="clear" (click)="cancelarAccionBorrarMensajes()">
+          <ion-icon slot="icon-only" name="close-outline"></ion-icon>
+        </ion-button>
+      </div>
+
+      <div *ngIf="!loading" class="div-opcion-flotante-borrar-mensajes">
+        <ion-button fill="clear" (click)="borrarMensajesSeleccionados()" [disabled]="false">
+          <img src="assets/icon/basura.gif"/>
+        </ion-button>
+      </div>
+    </ng-template>
+
+  <ion-toolbar class="ionToolbar">
+    <ion-buttons slot="start" class="BackButton">
+      <ion-back-button text="" defaultHref="/home-tabs/chats"></ion-back-button>
+    </ion-buttons>
+
+    <ion-item
+      lines="none"
+      class="chat-toolbar sinBackground alCentro"
+      *ngIf="nukaChat"
+    >
+      <ion-avatar *ngIf="utils.mostrarImagenChat(nukaChat)" class="ImagenChat">
+        <img [src]="getImagenChat()" />
+      </ion-avatar>
+
+      <ion-button
+        class="botonFavorito"
+        *ngIf="utils.mostrarImagenChat(nukaChat)"
+        fill="clear"
+      >
+        <ion-icon
+          *ngIf="!nukaChat.favorito"
+          slot="icon-only"
+          name="star-outline"
+        ></ion-icon>
+        <ion-icon
+          *ngIf="nukaChat.favorito"
+          slot="icon-only"
+          name="star"
+        ></ion-icon>
+      </ion-button>
+
+      <!--    
+      <ion-label class="SummaryChat">
+        {{ nukaChat.summary }} Multi-line text that should wrap when it is too long to fit on one line. Lorem ipsum dolor sit amet, consectetur
+        adipiscing elit.
+      </ion-label>
+-->
+
+      <span [ngClass]="getClassSummary()">{{ nukaChat.summary }}</span>
+
+    </ion-item>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="toggleMostrarBarraBusqueda()">
+        <ion-icon
+          name="search-outline"
+          slot="icon-only"
+          [ngStyle]="assinarEstiloIconoBusqueda()"
+        ></ion-icon>
+      </ion-button>
+      <ion-button (click)="abrirConfiguracionAjustes()">
+        <ion-icon slot="icon-only" name="settings-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+  <ng-template [ngIf]="mostrarBarraBusqueda">
+    <ion-toolbar>
+      <ion-searchbar
+        class="ionSearchbar"
+        placeholder="¿Que quieres buscar?"
+        [debounce]="1000"
+        (ionChange)="handleInputBuscador($event)"
+      ></ion-searchbar>
+    </ion-toolbar>
+  </ng-template>
+</ion-header>
+
+<ion-content
+  #content
+  id="contenido"
+  [scrollEvents]="isAllowScrollEvents"
+  [scrollY]="isAllowScroll"
+  (ionScroll)="logScrolling($event)"
+  class="contenido"
+>
+  <ng-template [ngIf]="!loading" [ngIfElse]="loadingItem">
+    <ion-label class="class-empty" *ngIf="messages && messages.length == 0"
+      >Chat sin mensajes</ion-label
+    >
+
+    <ng-container *ngIf="esperandoRespuestaMensaje">
+      <ion-item lines="none" class="message-user">
+        <ion-spinner name="dots" style="width: 100%"></ion-spinner>
+      </ion-item>
+    </ng-container>
+
+    <app-chat-group
+      *ngIf="messages && !loading"
+      [messages]="messages"
+      [isPageScrolling]="isPageScrolling"
+      [esperandoRespuestaMensaje]="esperandoRespuestaMensaje"
+      [borrarMensajes]="borrarMensajes"
+      (scrollToBottomEvent)="scrollToBottom()"
+      class="barraScrollCustom"
+    ></app-chat-group>
+  </ng-template>
+
+  <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="dots"
+    ></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
+
+<ng-template #loadingItem>
+  <ion-item lines="none" class="loadingAlCentro">
+    <ion-spinner name="crescent" class="loading-chat"></ion-spinner>
+  </ion-item>
+</ng-template>
+
+<ion-footer id="barra">
+  <ion-toolbar style="height: auto">
+    <ion-grid style="padding: 0; margin: 0">
+      <ion-item *ngFor="let contenidoFile of contenidoFiles">
+        <ion-row>
+          <ion-col size="12">
+            <ion-chip>
+              <ion-icon
+                (click)="deleteSpecificFile(contenidoFile)"
+                name="close-circle"
+              ></ion-icon>
+              <ion-icon name="{{ selectIconName(contenidoFile) }}"></ion-icon>
+              <ion-label>{{ contenidoFile.name }}</ion-label>
+            </ion-chip>
+          </ion-col>
+        </ion-row>
+      </ion-item>
+
+      <ion-row *ngIf="msDuration || recordTime > 0">
+        <ion-col size="2" *ngIf="audioStatus != 'record'">
+          <ion-button size="large" fill="clear" (click)="deleteCurrentAudio()">
+            <ion-icon
+              style="min-width: 30px"
+              name="close-circle-outline"
+            ></ion-icon>
+          </ion-button>
+        </ion-col>
+        <ion-col size="1" *ngIf="audioStatus == 'record'">
+          <ion-spinner name="crescent"></ion-spinner>
+        </ion-col>
+
+        <ion-col size="2" *ngIf="audioStatus == 'record'">
+          <ion-text>{{ recordTime | formatAudio }}</ion-text>
+        </ion-col>
+        <ion-col size="2" *ngIf="audioStatus != 'record' && msDuration">
+          <ion-text> {{ msDuration | formatAudio }}</ion-text>
+        </ion-col>
+
+        <ion-col size="1" *ngIf="audioStatus == 'pause'">
+          <ion-button size="large" fill="clear" (click)="playCurrentAudio()">
+            <ion-icon style="min-width: 30px" name="play"></ion-icon>
+          </ion-button>
+        </ion-col>
+
+        <ion-col size="1" *ngIf="audioStatus == 'play'">
+          <ion-button size="large" fill="clear" (click)="pauseCurrentAudio()">
+            <ion-icon
+              style="min-width: 30px"
+              name="pause"
+              color="primary"
+            ></ion-icon>
+          </ion-button>
+        </ion-col>
+
+        <ion-col size="4"> </ion-col>
+
+        <ion-col *ngIf="audio" size="1.5">
+          <ion-button
+            size="large"
+            fill="clear"
+            (click)="adjuntar_AudioAndFile()"
+          >
+            <ion-icon style="min-width: 30px" name="attach-outline"></ion-icon>
+          </ion-button>
+        </ion-col>
+
+        <ion-col *ngIf="audio" size="1.5">
+          <ion-button size="large" fill="clear" (click)="enviarNukaMsj()">
+            <ion-icon style="min-width: 30px" name="send"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="!audio">
+        <!-- Texto -->
+        <ion-col size="9" class="textarea-mensaje">
+          <textarea name="text" [(ngModel)]="texto" placeholder="Mensaje"  
+          wrap="soft" (keyup)="autoGrowTextZone($event)"> 
+          </textarea>
+        </ion-col>
+
+        <!-- Boton Audio y Files  -->
+        <ion-col
+          size="1.5"
+          *ngIf="!((texto.length > 0) || (audio && msDuration))"
+        >
+          <ion-button
+            size="large"
+            fill="clear"
+            (mousedown)="onButtonPressed_StartRecording()"
+            (mouseup)="onButtonReleased_AudioAndFile()"
+          >
+            <ion-icon
+              style="min-width: 30px"
+              name="duplicate-outline"
+            ></ion-icon>
+          </ion-button>
+        </ion-col>
+
+        <ion-col
+          size="1.5"
+          *ngIf="!((texto.length > 0) || (audio && msDuration))"
+        >
+          <ion-button
+            shape="round"
+            *ngIf="!(audioStatus == 'record')"
+            size="large"
+            fill="clear"
+            (click)="onButtonPressed_StartRecording()"
+          >
+            <ion-icon style="min-width: 30px" name="mic-outline"></ion-icon>
+          </ion-button>
+
+          <ion-button
+            shape="round"
+            *ngIf="audioStatus == 'record'"
+            size="large"
+            fill="clear"
+            (click)="onButtonReleased_OnlyAudio()"
+          >
+            <ion-icon
+              style="min-width: 30px"
+              name="mic-outline"
+              color="danger"
+            ></ion-icon>
+          </ion-button>
+        </ion-col>
+
+        <ion-col size="1.5" *ngIf="(texto.length > 0) || (audio && msDuration)">
+          <ion-button
+            size="large"
+            fill="clear"
+            (click)="adjuntar_AudioAndFile()"
+          >
+            <ion-icon style="min-width: 30px" name="attach-outline"></ion-icon>
+          </ion-button>
+        </ion-col>
+
+        <ion-col size="1.5" *ngIf="(texto.length > 0) || (audio && msDuration)">
+          <ion-button size="large" fill="clear" (click)="enviarNukaMsj()">
+            <ion-icon style="min-width: 30px" name="send"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>

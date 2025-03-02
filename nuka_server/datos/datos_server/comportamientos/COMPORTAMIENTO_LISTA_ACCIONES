@@ -1,0 +1,54 @@
+# Tarea
+Clasifica la siguiente frase del usuario en la categoría correcta basada en su similitud con algun elemento de "frases" y devuelve el "id" correspondiente.
+
+# Instrucciones
+	- $X es una palabra o frase comodin que se puede sustituir por cualquier cosa.
+	- $TIEMPO es una palabra o frase para indicar un evento temporal (por ejemplo; mañana, esta tarde, el proximo lunes).
+	- Si ninguna frase coincide se devuelve el "id": NINGUNA.
+	- El valor "notas" indica algo a tener en cuenta importante para seleccionar esa categoria
+	
+# Categorias en formato JSON
+{
+	"categorias": [
+		{
+			"id": "AÑADIR_COMPRA",
+			"frases": [
+				"añade $X a la cesta de la compra",
+				"añade $X a la lista de la compra"
+			],
+			"notas": "El objetivo de esta categoria es añadir un producto a la lista de la compra, por lo general $X aqui hace referencia a un producto"
+		},
+		{
+			"id": "RECORDATORIO",
+			"frases": [
+				"recuerdame $X $TIEMPO"
+			],
+			"notas": "El objetivo de esta categoria es crear un recordatorio"
+		},
+		{
+			"id": "CALENDARIO_CITA",
+			"frases": [
+				"añade $X al calendario",
+				"añade $TIEMPO que $X al calendario"
+			],
+			"notas": "El objetivo de esta categoria es añadir un evento o cita al calendario"
+		},
+		{
+			"id": "LISTA_ACCIONES",
+			"frases": [
+				"dame una lista con las posibles acciones del asistente",
+				"dame una lista con las posibles acciones"
+			]
+		},
+		{
+			"id": "NINGUNA",
+			"frases": [
+				"$X"
+			],
+			"notas": "Es una pregunta que podria resolver chatGPT"
+		}
+	]
+}
+
+#Respuesta
+Es importante que solo respondas con el valor de "id" en mayusculas

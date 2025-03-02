@@ -1,0 +1,98 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title>Ajustes de usuario</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-header>
+  <ion-accordion-group [multiple]="true" [value]="etiquetasDesarrolladorKeys" *ngIf="usuario && utils.isAdmin(usuario)" >
+    <ion-accordion *ngIf="usuario && utils.isAdmin(usuario)" value="Desarrollador">
+      <ion-item slot="header" color="medium">
+        <ion-label> Desarrollador </ion-label>
+      </ion-item>
+
+      <div slot="content">
+        <ion-grid>
+          <ion-row>
+            <ion-col size="6">
+              <ion-label style="font-size: 18px;"> Version de app </ion-label>
+            </ion-col>
+            <ion-col size="6">
+              <ion-label> {{ getVersionApp() }} </ion-label>
+            </ion-col>
+          </ion-row>
+          <div class="separator-linea"></div>
+
+          <ion-row>
+            <ion-col size="6">
+              <ion-label style="font-size: 18px;"> Version de servidor </ion-label>
+            </ion-col>
+            <ion-col size="6">
+              <ion-label> {{ versionServidor }} </ion-label>
+            </ion-col>
+          </ion-row>
+          <div class="separator-linea"></div>
+    
+          <ion-row>
+            <ion-col size="6">
+              <ion-label style="font-size: 18px;"> Servidor </ion-label>
+            </ion-col>
+            <ion-col size="6" >
+              <ion-list>
+                <ion-radio-group [value]="ramaServidor" (ionChange)="ionChangeTargetServer($event, 'radio')">
+                  <ion-item lines="none" *ngFor="let s of branchServers">
+                    <ion-label>{{ s }}</ion-label>
+                    <ion-radio slot="end" [value]="s"></ion-radio>
+                  </ion-item>
+                </ion-radio-group>
+              </ion-list>
+            </ion-col>
+          </ion-row>
+          <div class="separator-linea"></div>
+
+          <ion-row>
+            <ion-col size="12">
+              <ion-label style="font-size: 18px;"> Servidor objetivo (Solo custom) </ion-label>
+            </ion-col>
+            <ion-col size="8" >
+              <ion-input class="inputText" style="margin-top: 3px;"
+              type="text" 
+              [value]="urlServidor"
+              [clearInput]="true"
+              [disabled]="noEsServidorCustom()"
+              placeholder="Servidor objetivo" 
+              (ionChange)="ionChangeTargetServer($event, 'input')"></ion-input>
+            </ion-col>
+            <ion-col size="4">
+              <ion-button [disabled]="noEsServidorCustom()" (click)="cambiarServidorManualmente()" style="margin-top: 0px;">Cambiar</ion-button>
+            </ion-col>
+          </ion-row>
+          <div class="separator-linea"></div>
+
+          <ion-row>
+            <ion-col size="12">
+              <ion-label style="font-size: 18px;"> Habilitar servicios </ion-label>
+            </ion-col>
+            <ion-col size="12" *ngFor="let s of serviciosToogle">
+              <ion-item style="max-width: 300px;" lines="none">
+                <ion-label> {{ s.titulo }} </ion-label>
+                <ion-toggle slot="end" [checked]="s.habilitado" [disabled]="loadingService" (ionChange)="ionChangeToggleServicios($event, s)"></ion-toggle>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <div class="separator-linea"></div>
+
+        </ion-grid>
+      </div>
+    </ion-accordion>
+  </ion-accordion-group>
+</ion-header>
+
+<ion-content>
+  <!-- Opciones del chat, se saca de  AjustesChat.json o AjustesUsuario.json -->
+  <app-options-modal *ngIf="usuario && usuario.opcionesModal" [esAjustesChat]="false" [opcionesModal]="usuario.opcionesModal" [id]="usuario.id" (salida)="getSalidaAjustesUsuario($event)"></app-options-modal>
+</ion-content>
+

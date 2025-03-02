@@ -1,0 +1,54 @@
+<ng-template [ngIf]="!loading" [ngIfElse]="loadingItem">
+  <div class="sinBarraDeScroll estrategia-class">
+    
+  <span>
+    {{ estrategia.estado }} - {{ estrategia.tipo }}
+  </span>
+  <div class="separator"></div>
+
+  <span>
+    {{ estrategia.fechaInicio | formatTimestampFecha : "AAAA MMMMM DD, hh:mm" }}
+  </span>
+  <div class="separator"></div>
+
+  <div class="" style="display: flex; align-items: center; ">
+    <ion-button (click)="isListVisible = !isListVisible" style="width: 34px; height: 34px;">
+      <img style="max-width: 29px; max-height: 29px;" src="/assets/icon/bet/toggle-list.png" muted/>
+    </ion-button>
+    <span style="margin-left: 7px;">
+      {{ estrategia.idsApuestas.length }} Apuestas
+    </span>
+  </div>
+
+  <ul *ngIf="isListVisible && estrategia.idsApuestas && estrategia.idsApuestas.length > 0">
+    <li *ngFor="let a of apuestas">
+      <div lines="none" class="alCentro itemArchivo">
+        <span>{{ a.id }}</span>
+        <br>
+        <span>{{ a.casa }}</span>
+        <br>
+        <span>{{ a.fecha | formatTimestampFecha : "AAAA MMMMM DD, hh:mm" }}</span>
+        <br>
+        <span>{{ a.saldoDisponible }} €</span>
+        <br>
+        <span>{{ a.estadoApuesta }}</span>
+        <br>
+        <span>{{ a.cantidad }} €</span>
+        <br>
+        <span>{{ getEncuentro(a.idEncuentro).equipoLocal }}({{ getEncuentro(a.idEncuentro).golesTotalesLocal }}) 
+          vs 
+          {{ getEncuentro(a.idEncuentro).equipoVisitante }}({{ getEncuentro(a.idEncuentro).golesTotalesVisitante }})</span>
+        <span>{{ getEncuentro(a.idEncuentro).fecha | formatTimestampFecha : "AAAA MMMMM DD, hh:mm"}}</span>
+        <br>
+      </div>
+    </li>
+  </ul>
+
+  </div>
+</ng-template>
+
+<ng-template #loadingItem>
+  <ion-item lines="none" class="loadingAlCentro">
+    <ion-spinner name="crescent" class="loading-chat"></ion-spinner>
+  </ion-item>
+</ng-template>

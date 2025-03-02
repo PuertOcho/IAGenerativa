@@ -1,0 +1,84 @@
+
+.loading-chat {
+  height: 200px;
+  max-height: 200px;
+  min-height: 200px;
+}
+
+.custom-slider {
+  position: relative;
+  overflow: hidden;
+  background: #ccc;
+  border-radius: 30px;
+}
+
+.slides {
+  display: flex;
+  transition: transform 0.3s ease-in-out;
+}
+
+.slide {
+  flex: 0 0 100%; /* Ancho de cada slide */
+  min-width: 100%; /* Ancho mínimo para ocupar todo el espacio */
+  padding: 20px;
+  color: #333;
+
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5px;
+  padding-bottom: 8px;
+  padding-top: 8px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  margin: 0 5px;
+  border-radius: 50%;
+  background-color: #888;
+  cursor: none;
+}
+
+.dot.active {
+  background-color: #333;
+}
+
+.button-images {
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  z-index: 6;
+  --border-radius: 50%;
+  height: 100%;
+  max-height: 100%;
+  margin-inline-end: 0px;
+}
+
+.button-images[slot=inicio] {
+  left: 0;
+  padding-left: 15px;
+}
+
+.icon-images {
+  height: 50px;
+  max-height: 50px;
+  margin-top: 190px;
+}
+
+.button-images[slot=fin] {
+  right: 0;
+  padding-right: 15px;
+}
+
+img {
+  height: 200px;
+  max-height: 200px;
+  min-height: 200px;
+}

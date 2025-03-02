@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "412286405561",
+    "project_id": "nuka-puertocho",
+    "storage_bucket": "nuka-puertocho.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:412286405561:android:f3178a3ff3bdace5820468",
+        "android_client_info": {
+          "package_name": "com.nuka.memento"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMo3h0asqefork-Kb9n63P_Nh-v9-1aSg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

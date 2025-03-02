@@ -1,0 +1,213 @@
+<div
+  id="{{ message.id }}"
+  class="message-item"
+  *ngFor="let message of messages; let index = index; let last = last"
+  appLongPressBorrarMensaje (longPress)="onLongPress($event)"
+>
+  <!-- My message -->
+  <ng-container *ngIf="message.tipoMsj === 'PETICION'" >
+
+    <div class="message-container message-container-me-color" [ngClass]="asignarColorFondoBorrado(message)">
+
+      <!-- checkbox para seleccionar los mensajes que vayamos a borrar (yo) -->
+      <ng-template [ngIf]="borrarMensajes">
+        <ion-checkbox slot="start" [checked]="message.seleccionado" (ionChange)="toogleSeleccionadoParaBorrar(message)"></ion-checkbox>
+      </ng-template>
+
+      <!-- Boton para reenviar el mensaje por si falla -->
+      <ng-template [ngIf]="message.tipoMsj == 'PETICION' && !message.respondido && !esperandoRespuestaMensaje">
+        <div class="boton-reenvio-mensaje">
+          <ion-icon
+            size="large"
+            slot="icon-only"
+            name="refresh-circle"
+            color="primary"
+            (click)="reenviarNukaMsj(message)"
+          ></ion-icon>
+        </div>
+      </ng-template>
+
+      <!-- Texto del mensaje (yo) -->
+      <ng-template [ngIf]="message.texto">
+        <ion-item
+          lines="none"
+          class="message-user"
+          [ngClass]="ngClassAssign(index)"
+        >
+         
+          <span
+            class="text mensaje-chat selectableText"
+            [innerHTML]="message.texto | markdown | async"
+          ></span>
+           
+
+        </ion-item>
+      </ng-template>
+
+      <!-- Audio del mensaje (yo) -->
+      <ng-template [ngIf]="message.audioFile || message.needAudio">
+        <ion-item
+          lines="none"
+          class="message-user"
+          [ngClass]="ngClassAssign(index)"
+        >
+          <app-wavesurfer
+            *ngIf="message.audioFile || message.needAudio"
+            [message]="message"
+          >
+          </app-wavesurfer>
+        </ion-item>
+      </ng-template>
+
+      <!-- Imagen/es del mensaje (yo) -->
+      <ng-template [ngIf]="checkImageItem(message)">
+        <ion-item
+          lines="none"
+          class="message-user"
+          [ngClass]="ngClassAssign(index)"
+          style="border-radius: 30px"
+        >
+          <app-image-item
+            *ngIf="checkImageItem(message)"
+            [message]="message"
+          ></app-image-item>
+        </ion-item>
+      </ng-template>
+
+      <!-- Fecha del mensaje (yo) -->
+      <ion-item
+        lines="none"
+        class="message-user item-fecha"
+        [ngClass]="ngClassAssign(index)"
+      >
+        <div class="time">
+          <ion-label>{{
+            message.fecha | formatTimestampFecha : "hh:mm"
+          }}</ion-label>
+          <ion-icon
+            *ngIf="message.respondido == true"
+            color="primary"
+            name="checkmark-done-outline"
+          ></ion-icon>
+          <ion-icon
+            *ngIf="message.respondido == false"
+            color="danger"
+            name="close-circle-outline"
+          ></ion-icon>
+        </div>
+      </ion-item>
+    </div>
+  </ng-container>
+
+  <!-- Mensaje del asistente -->
+  <ng-container *ngIf="message.tipoMsj === 'RESPUESTA'">
+    <div class="message-container message-container-user-color" [ngClass]="asignarColorFondoBorrado(message)">
+      
+      <!-- checkbox para seleccionar los mensajes que vayamos a borrar (Asistente) -->
+      <ng-template [ngIf]="borrarMensajes">
+        <ion-checkbox slot="start" [checked]="message.seleccionado" (ionChange)="toogleSeleccionadoParaBorrar(message)"></ion-checkbox>
+      </ng-template>  
+
+      <!-- Texto del mensaje (Asistente) -->
+      <ng-template [ngIf]="message.texto">
+        <ion-item
+          lines="none"
+          class="message-user"
+          [ngClass]="ngClassAssign(index)"
+        >
+          <span
+            class="text mensaje-chat selectableText"
+            [innerHTML]="message.texto | markdown | async"
+          >
+          </span>
+        </ion-item>
+      </ng-template>
+
+      <!-- Audio del mensaje (Asistente) -->
+      <ng-template [ngIf]="message.audioFile || message.needAudio">
+        <ion-item
+          lines="none"
+          class="message-user"
+          [ngClass]="ngClassAssign(index)"
+        >
+          <app-wavesurfer
+            *ngIf="message.audioFile || message.needAudio"
+            [message]="message"
+          >
+          </app-wavesurfer>
+        </ion-item>
+      </ng-template>
+
+      <!-- Imagen/es del mensaje (Asistente) -->
+      <ng-template [ngIf]="checkImageItem(message)">
+        <ion-item
+          lines="none"
+          class="message-user"
+          [ngClass]="ngClassAssign(index)"
+        >
+          <app-image-item
+            *ngIf="checkImageItem(message)"
+            [message]="message"
+          ></app-image-item>
+        </ion-item>
+      </ng-template>
+
+      <!-- Opciones del mensaje (Asistente) -->
+      <ng-template
+        [ngIf]="message.contenidoMsj && message.contenidoMsj.length > 0"
+      >
+        <ion-item
+          lines="none"
+          class="message-user"
+          [ngClass]="ngClassAssign(index)"
+        >
+          <div *ngIf="message.contenidoMsj && message.contenidoMsj.length > 0">
+            <div *ngFor="let c of message.contenidoMsj">
+              <app-options-item
+                *ngIf="c.tipo == 'OPCIONES'"
+                [message]="message"
+                [contenido]="c"
+                (nuevoMsj)="recibirNuevoMsj($event)"
+              ></app-options-item>
+            </div>
+          </div>
+        </ion-item>
+      </ng-template>
+
+      <!-- Boton redireccion del mensaje (Asistente) -->
+      <ng-template [ngIf]="message.redireccion">
+        <ion-item
+          lines="none"
+          class="message-user"
+          [ngClass]="ngClassAssign(index)"
+        >
+          <ion-button
+            *ngIf="message.redireccion"
+            (click)="redireccionar(message.redireccion)"
+            style="width: 100%"
+          >
+            {{ getNombreRedireccion(message.redireccion) }}
+            <ion-icon
+              name="arrow-redo-outline"
+              style="margin-left: 5px"
+            ></ion-icon>
+          </ion-button>
+        </ion-item>
+      </ng-template>
+
+      <!-- Fecha del mensaje (Asistente) -->
+      <ion-item
+        lines="none"
+        class="message-user item-fecha"
+        [ngClass]="ngClassAssign(index)"
+      >
+        <div class="time">
+          <ion-label>{{
+            message.fecha | formatTimestampFecha : "hh:mm"
+          }}</ion-label>
+        </div>
+      </ion-item>
+    </div>
+  </ng-container>
+
+</div>

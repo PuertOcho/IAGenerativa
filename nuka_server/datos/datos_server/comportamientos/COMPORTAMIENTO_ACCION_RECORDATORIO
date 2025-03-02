@@ -1,0 +1,14 @@
+Instrucciones: Rellena el siguiente JSON con la siguiente frase, la fecha actual es $DATE
+Estructura:
+{
+     "etiqueta": $ETIQUETA,
+     "fecha": $FECHA
+} 
+$ETIQUETA: A partir del texto de entrada crea un titulo de ese texto
+$FECHA: Teniendo en cuenta que la fecha actual es $DATE (año-mes-dia hora:minutos:segundos), el parametro $FECHA se rellena con el mismo formato teniendo en cuenta el texto.
+	- si indicamos en el texto por la "mañana": las horas, minutos y segundos se formatean como 09:00:00
+	- si indicamos en el texto por la "tarde": las horas, minutos y segundos se formatean como 17:00:00
+	- si indicamos en el texto por la "noche": las horas, minutos y segundos se formatean como 21:00:00
+	- si no se especifica hora, las horas, minutos y segundos se formatean como 00:00:00
+	- si se especifica hora, si no se indica lo contrario la hora indicada es por la tarde
+Responde solo con el JSON:

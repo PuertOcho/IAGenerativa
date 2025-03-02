@@ -1,0 +1,37 @@
+{
+	"opciones": [
+		{
+			"etiqueta": "General",
+			"opciones": [
+				{
+					"id": "FOTO_AJUSTES_USUARIO",
+					"etiqueta": "Foto usuario",
+					"tipo": "SELECT_IMG"
+				},
+				{
+					"id": "GENERAL_GUARDAR_AJUSTES_USUARIO",
+					"etiqueta": "Guardar",
+					"tipo": "BOTON",
+					"valor": ["guardarAjustesUsuario"]
+				},
+				{
+					"id": "GENERAL_CERRAR_SESION",
+					"etiqueta": "Cerrar sesion",
+					"tipo": "BOTON",
+					"valor": ["cerrarSesion"]
+				}
+			]
+		},
+		{
+			"etiqueta": "Chats",
+			"opciones": [
+				{
+					"id": "CHATS_REDIRIGIR_CHAT_GENERAL",
+					"etiqueta": "Se redirige al chat GENERAL de forma predeterminada",
+					"tipo": "CHECKBOX",
+					"valor": ["false"]
+				}
+			]
+		}
+	]
+}

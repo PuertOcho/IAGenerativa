@@ -1,0 +1,23 @@
+.footer-settings {
+    display: flex;
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    background: transparent;
+    margin-bottom: 10px;
+    
+    ion-button {
+        max-width: 300px;
+        width: 80%;
+    }
+}
+
+.separator-linea {
+    border-top: 1px solid #ccc;
+    margin: 5px 0;
+}
+
+.inputText {
+    background-color: var(--ion-color-light);
+    --padding-start: 10px;
+    padding-left: 10px;
+  }

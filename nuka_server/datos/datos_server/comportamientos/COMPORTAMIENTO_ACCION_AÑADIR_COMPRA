@@ -1,0 +1,7 @@
+Instrucciones: Rellena el siguiente JSON con la siguiente frase, teniendo en cuenta que si no es especifica un numero concreto la cantidad es 1 y que si se menciona mas de un producto seran JSON distintos y separados por coma.
+Estructura:
+{ 
+     "productName": NOMBRE_PRODUCTO,
+     "quantity": CANTIDAD_PRODUCTO 
+}
+Responde solo con el JSON:

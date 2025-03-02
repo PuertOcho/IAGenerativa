@@ -1,0 +1,33 @@
+ion-range {
+    --knob-size: 6px;
+    --knob-background: var(--ion-color-primary);
+    --height: 50px;
+    height: 50px;
+}
+
+ion-progress-bar {
+    margin-top: 23.5px;
+    margin-bottom: 23.5px;
+}
+
+.wavesurfer-row {
+    border-radius: 30px;
+    box-shadow: rgba(100, 100, 111, 0.3) 0px 3px 10px 0px;
+}
+
+.tiempoAudio {
+    background: none;
+    overflow: visible;
+    top: -25px;
+    font-size: 14px;
+}
+
+.maximo-ancho-barra {
+    max-width: 700px;
+}
+
+.grid-wavesurfer {
+    @media only screen and (min-width: 1024px) {
+        max-width: 80%;
+    }
+}

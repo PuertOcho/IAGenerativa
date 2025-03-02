@@ -1,0 +1,87 @@
+
+  <ion-grid>
+    
+    <ion-row *ngFor="let opcionBasica of listaOpciones">
+      <ion-col size="12" style="padding: 2px;" *ngIf="mostrarEtiquetaDeOpcion(opcionBasica)">
+        <ion-label style="font-size: 18px;" > {{ opcionBasica.etiqueta }} </ion-label>
+      </ion-col>
+
+      <ion-col size="12" style="padding: 2px;">
+      
+        <ng-template [ngIf]="opcionBasica.tipo == 'INPUT'">
+          <ion-item class="itemInputOpcion" counter="true" lines="none" fill="outline">
+            <ion-textarea class="opcionBasicaInput"
+              [value]="utils.getValueOpcion(opcionBasica)"
+              [placeholder]="utils.getEtiquetaOpcion(opcionBasica)"
+              [clearOnEdit]="true"
+              maxlength="500"
+              autoGrow="true"
+              (ionChange)="guardarDatos(opcionBasica, $event)">
+            </ion-textarea>
+          </ion-item>
+        </ng-template>
+
+        <ng-template [ngIf]="opcionBasica.tipo == 'NUMBER'">
+          <ion-input class="opcionBasicaInput" 
+            type="number" 
+            [value]="utils.getDatoOpcion(opcionBasica)"
+            [clearInput]="true"
+            placeholder="Introduzca numero" 
+            (ionChange)="guardarDatos(opcionBasica, $event)"></ion-input>
+        </ng-template>
+
+        <ng-template [ngIf]="opcionBasica.tipo == 'RANGE'">
+            <ion-range 
+            aria-label="Custom range" 
+            [ticks]="true" 
+            [snaps]="true" 
+            [min]="0" 
+            [pin]="true"
+            [max]="utils.getDatoOpcion(opcionBasica)"
+            [value]="utils.getValueOpcion(opcionBasica)"
+            (ionChange)="guardarDatos(opcionBasica, $event)"></ion-range>
+        </ng-template>
+
+        <ng-template [ngIf]="opcionBasica.tipo == 'BOTON'">
+            <ion-button expand="block" shape="round" label="texto" label-placement="floating" fill="outline" 
+            (ionChange)="guardarDatos(opcionBasica, $event)" 
+            (click)="accionDeBoton(opcionBasica)"> {{ utils.getEtiquetaOpcion(opcionBasica) }} </ion-button>
+        </ng-template>
+
+        <ng-template [ngIf]="opcionBasica.tipo == 'CHECKBOX'" >
+          <ion-item style="padding: 0; margin: 0;" lines="none">
+            <ion-checkbox labelPlacement="end" 
+            (ionChange)="guardarDatos(opcionBasica, $event)" 
+            [checked]="utils.getValueOpcion(opcionBasica)"></ion-checkbox>
+            <ion-label style="font-size: 18px; margin-left: 5px;"> {{ utils.getValueOpcion(opcionBasica) | formatSiNoDeBoolean }} </ion-label>
+          </ion-item>
+        </ng-template>
+
+        <ng-template [ngIf]="opcionBasica.tipo == 'SELECT_SINGLE'">
+            <ion-select [value]="utils.getValueOpcion(opcionBasica)" placeholder="Seleccione uno" 
+              interface="popover" [interfaceOptions]="{size: 'cover'}" 
+              (ionChange)="guardarDatos(opcionBasica, $event)">
+              <ion-select-option *ngFor="let o of utils.getDatosOpcion(opcionBasica)" [value]="o">
+                <span class="spanLabel"> {{ o }} </span>
+              </ion-select-option>
+            </ion-select>
+        </ng-template>
+
+        <ng-template [ngIf]="opcionBasica.tipo == 'SELECT_MULTIPLE'">
+          <ion-select id="SELECT_MULTIPLE"
+            [value]="getValuesOpcionIfNotSaved(opcionBasica)"
+            placeholder="Seleccione los elementos" 
+            interface="popover" 
+            [interfaceOptions]="{size: 'cover'}"
+            [multiple]="true"
+            (ionChange)="guardarDatos(opcionBasica, $event)">
+            <ion-select-option *ngFor="let o of utils.getDatosOpcion(opcionBasica)" [value]="o"> 
+              <ion-label class="spanLabel"> {{ o }} </ion-label> 
+            </ion-select-option>
+          </ion-select>
+        </ng-template>
+
+        <div class="separator"></div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>

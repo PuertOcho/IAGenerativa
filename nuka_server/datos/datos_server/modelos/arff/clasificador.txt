@@ -1,0 +1,429 @@
+¿cómo estás hoy?, SALUDO
+¿Puedes decirme un chiste?, PREGUNTA
+¿Cuál es el clima hoy?, TIEMPO
+Reproduce mi canción favorita, REPRODUCIR_AUDIO
+¿Qué películas están en cartelera?, PREGUNTA
+¿Me puedes recordar mi cita a las 4 pm?, RECORDATORIO
+¿Cuántos centímetros hay en una pulgada?, PREGUNTA
+¿Cuál es la capital de Francia?, PREGUNTA
+¿Cuál es el significado de la palabra "efímero"?, PREGUNTA
+Traduce esta frase al francés: "Hola, ¿cómo estás?", TRADUCCION
+¿Cuántos habitantes tiene Nueva York?, PREGUNTA
+¿Cuál es la última noticia?, BUSCAR_NOTICIA
+¿Cuál es el mejor restaurante de la ciudad?, PREGUNTA
+¿Puedes contar hasta 10 en alemán?, PREGUNTA
+¿Cuánto es 15 multiplicado por 4?, PREGUNTA
+¿Dónde está la biblioteca más cercana?, MAPA
+¿Puedes abrir mi correo electrónico?, CORREO
+¿Cuándo fue la Revolución Francesa?, PREGUNTA
+¿Cuál es la altura de la Torre Eiffel?, PREGUNTA
+¿Puedes hacer una lista de compras para mí?, PREGUNTA
+¿Cuál es la fecha de hoy?, PREGUNTA
+¿Cuál es el resultado de la raíz cuadrada de 144?, PREGUNTA
+¿Cuántos kilómetros hay en una milla?, PREGUNTA
+¿Cuál es el autor de "Cien años de soledad"?, PREGUNTA
+¿Me puedes dar direcciones para llegar a la estación de tren?, MAPA
+¿Qué hay en mi calendario para mañana?, RECORDATORIO
+¿Cuántas libras hay en un kilogramo?, PREGUNTA
+¿Cuál es el último puntaje del equipo de fútbol de mi ciudad?, NOTICIA
+¿Cuál es la diferencia entre un virus y un malware?, PREGUNTA
+¿Qué significa LOL en inglés?, PREGUNTA
+¿Puedes sugerirme una receta de ensalada saludable?, RECOMENDACION
+¿Cuál es la capital de España?, PREGUNTA
+¿Cuál es la fórmula química del dióxido de carbono?, PREGUNTA
+¿Puedes decirme un refrán famoso en inglés?, REFRAN
+¿Cuál es la moneda oficial de Reino Unido?, PREGUNTA
+¿Me puedes despertar a las 7 am mañana?, ALARMA
+¿Cuál es el número de teléfono del servicio de taxis más cercano?, PREGUNTA
+¿Cómo se dice "buenos días" en francés?, TRADUCCION
+¿Cuál es la velocidad de la luz en el vacío?, PREGUNTA
+¿Puedes buscar información sobre la teoría de la relatividad de Albert Einstein?, BUSCAR_INFORMACION
+¿Cuál es el número atómico del cobre?, PREGUNTA
+¿Cuál es la moneda oficial de China?, PREGUNTA
+¿Qué significa la palabra "empatía"?, SIGNIFICADO
+¿Cuántas galaxias se estima que existen en el universo observable?, PREGUNTA
+¿Cuál es la capital de México?, PREGUNTA
+¿Cuál es el próximo día festivo en mi país?, CALENDARIO
+¿Puedes reproducir música de jazz?, REPRODUCIR_AUDIO
+¿Cuál es el idioma más hablado en India?, PREGUNTA
+¿Cuál es la diferencia entre un antivirus y un firewall?, DIFERENCIA
+¿Cuál es la altura del Monte Kilimanjaro?, PREGUNTA
+¿Puedes darme información sobre la última película de Quentin Tarantino?, BUSCAR_INFORMACION
+¿Cuánto es 144 dividido por 12?, OPERACION_MAT
+¿Cuántos jugadores hay en un equipo de fútbol soccer?, PREGUNTA
+¿Cuál es el símbolo químico del hidrógeno?, PREGUNTA
+¿Cuántas patas tiene una abeja?, PREGUNTA
+¿Cuál es el actor principal de la película "The Shawshank Redemption"?, PREGUNTA
+¿Puedes contar un chiste sobre gatos?, CHISTE
+¿Cuál es el vuelo más largo del mundo en duración?, PREGUNTA
+¿Cómo se llama nuestra galaxia?, PREGUNTA
+¿Quién escribió el libro "Don Quijote de la Mancha"?, PREGUNTA_AUTOR
+¿Cuál es la capital de Rusia?, PREGUNTA
+¿Puedes recomendarme un buen lugar para hacer senderismo?, RECOMENDACION
+¿Cuál es el símbolo químico del carbono?, PREGUNTA
+¿Cuál es la duración promedio de una película de Hollywood?, PREGUNTA
+¿Puedes decirme un refrán en español?, REFRAN
+¿Cuál es la moneda oficial de Alemania?, PREGUNTA
+¿Cuántos minutos hay en un día?, PREGUNTA
+¿Cuál es el nombre completo del famoso pintor Picasso?, PREGUNTA
+¿Puedes sugerirme un libro de fantasía épica?, RECOMENDACION
+¿Cuál es la altura del Monte Kilimanjaro?, PREGUNTA
+¿Cuántos dientes tiene un adulto promedio, incluyendo las muelas del juicio?, PREGUNTA
+¿Cuál es el idioma oficial de Italia?, PREGUNTA
+¿Puedes decirme un dato curioso sobre los elefantes?, DATO_CURIOSO
+¿Cuál es el número atómico del hierro?, PREGUNTA
+¿Cuál es la moneda oficial de México?, PREGUNTA
+¿Cuántos huesos tiene el cuerpo humano?, PREGUNTA
+¿Puedes buscar información sobre la película "El Señor de los Anillos"?, BUSCAR_INFORMACION
+¿Cuál es el número de teléfono de la compañía de taxis más grande?, PREGUNTA
+¿Cuál es la longitud del río Amazonas?, PREGUNTA
+¿Cuál es la temperatura promedio en el Polo Norte?, PREGUNTA
+¿Cuántas teclas tiene un teclado de piano estándar?, PREGUNTA
+¿Puedes recomendarme una serie de televisión de comedia?, RECOMENDACION
+¿Cuál es el salario mínimo en Estados Unidos?, PREGUNTA
+¿Cuántas estrellas hay en la bandera de Estados Unidos?, PREGUNTA
+¿Cuál es el autor de la famosa novela "Moby Dick"?, PREGUNTA_AUTOR
+¿Puedes buscar información sobre el monumento "Cristo Redentor"?, BUSCAR_INFORMACION
+¿Cuánto es 48 dividido por 6?, OPERACION_MAT
+¿Cuál es el pronóstico del tiempo para mañana?, TIEMPO
+¿Puedes sugerirme una receta de postre?, RECOMENDACION
+¿Cuál es la capital de China?, PREGUNTA
+¿Cuántos minutos hay en una hora?, PREGUNTA
+¿Puedes decirme una curiosidad sobre el espacio?, DATO_CURIOSO
+¿Cuál es el código de área de Nueva York?, PREGUNTA
+¿Cómo se dice "hola" en alemán?, TRADUCCION
+¿Cuál es la velocidad máxima permitida en una autopista?, PREGUNTA
+¿Puedes buscar información sobre la serie de televisión "Friends"?, BUSCAR_INFORMACION
+¿Cuál es el número atómico del carbono?, PREGUNTA
+¿Cuál es la moneda oficial de Japón?, PREGUNTA
+¿Qué significa la palabra "sostenibilidad"?, SIGNIFICADO
+¿Cuántos continentes hay en el mundo?, PREGUNTA
+¿Cuál es la capital de Argentina?, PREGUNTA
+¿Cuál es el próximo evento deportivo importante?, CALENDARIO
+¿Puedes reproducir música clásica?, REPRODUCIR_AUDIO
+¿Cuál es el idioma oficial de Brasil?, PREGUNTA
+¿Cuál es la diferencia entre un crédito y una tarjeta de débito?, DIFERENCIA
+¿Cuál es la altura de la Gran Muralla China?, PREGUNTA
+¿Puedes darme información sobre la película "El Gran Gatsby"?, BUSCAR_INFORMACION
+¿Cuánto es 125 dividido por 5?, OPERACION_MAT
+¿Cuántos jugadores hay en un equipo de fútbol americano?, PREGUNTA
+¿Cuál es el símbolo químico del hierro?, PREGUNTA
+¿Cuántas vidas tiene un gato?, PREGUNTA
+¿Cuál es el actor principal de la película "Forrest Gump"?, PREGUNTA
+¿Puedes contar un chiste sobre perros?, CHISTE
+¿Cuál es el vuelo más largo del mundo en distancia?, PREGUNTA
+¿Cuál es el nombre de nuestra galaxia?, PREGUNTA
+¿Quién escribió el libro "Matar a un ruiseñor"?, PREGUNTA_AUTOR
+¿Cuántas temporadas tiene la serie de televisión "Game of Thrones"?, PREGUNTA
+¿Cuál es la capital de Rusia?, PREGUNTA
+¿Puedes recomendarme un buen lugar para hacer senderismo?, RECOMENDACION
+¿Cuál es el símbolo químico del carbono?, PREGUNTA
+¿Cuál es la duración promedio de una película de Hollywood?, PREGUNTA
+¿Puedes decirme un refrán en español?, REFRAN
+¿Cuál es la moneda oficial de Alemania?, PREGUNTA
+¿Cuántos minutos hay en un día?, PREGUNTA
+¿Cuál es el nombre completo del famoso pintor Picasso?, PREGUNTA
+¿Puedes sugerirme un libro de fantasía épica?, RECOMENDACION
+¿Cuál es la altura del Monte Kilimanjaro?, PREGUNTA
+¿Cuántos dientes tiene un adulto promedio, incluyendo las muelas del juicio?, PREGUNTA
+¿Cuál es el idioma oficial de Italia?, PREGUNTA
+¿Puedes decirme un dato curioso sobre los elefantes?, DATO_CURIOSO
+¿Cuál es el número atómico del hierro?, PREGUNTA
+¿Cuál es la moneda oficial de México?, PREGUNTA
+¿Cuántos huesos tiene el cuerpo humano?, PREGUNTA
+¿Puedes buscar información sobre la película "El Señor de los Anillos"?, BUSCAR_INFORMACION
+¿Cuál es el número de teléfono de la compañía de taxis más grande?, PREGUNTA
+¿Cuál es la longitud del río Amazonas?, PREGUNTA
+¿Cuál es la temperatura promedio en el Polo Norte?, PREGUNTA
+¿Cuántas teclas tiene un teclado de piano estándar?, PREGUNTA
+¿Puedes recomendarme una serie de televisión de comedia?, RECOMENDACION
+¿Cuál es el salario mínimo en Estados Unidos?, PREGUNTA
+¿Cuántas estrellas hay en la bandera de Estados Unidos?, PREGUNTA
+¿Cuál es el autor de la famosa novela "Moby Dick"?, PREGUNTA_AUTOR
+¿Puedes buscar información sobre el monumento "Cristo Redentor"?, BUSCAR_INFORMACION
+¿Cuánto es 48 dividido por 6?, OPERACION_MAT
+¿Cuál es la capital de España?, PREGUNTA
+¿Puedes sugerirme una receta de ensalada saludable?, RECOMENDACION
+¿Cuál es la fórmula química del dióxido de carbono?, PREGUNTA
+¿Puedes decirme un refrán famoso en inglés?, REFRAN
+¿Cuál es la moneda oficial de Reino Unido?, PREGUNTA
+¿Me puedes despertar a las 7 am mañana?, ALARMA
+¿Cuál es el número de teléfono del servicio de taxis más cercano?, PREGUNTA
+¿Cómo se dice "buenos días" en francés?, TRADUCCION
+¿Cuál es la velocidad de la luz en el vacío?, PREGUNTA
+¿Puedes buscar información sobre la teoría de la relatividad de Albert Einstein?, BUSCAR_INFORMACION
+¿Cuál es el número atómico del cobre?, PREGUNTA
+¿Cuál es la moneda oficial de China?, PREGUNTA
+¿Qué significa la palabra "empatía"?, SIGNIFICADO
+¿Cuántas galaxias se estima que existen en el universo observable?, PREGUNTA
+¿Cuál es la capital de México?, PREGUNTA
+¿Cuál es el próximo día festivo en mi país?, CALENDARIO
+¿Puedes reproducir música de jazz?, REPRODUCIR_AUDIO
+¿Cuál es el idioma más hablado en India?, PREGUNTA
+¿Cuál es la diferencia entre un antivirus y un firewall?, DIFERENCIA
+¿Cuál es la altura del Monte Kilimanjaro?, PREGUNTA
+¿Puedes darme información sobre la última película de Quentin Tarantino?, BUSCAR_INFORMACION
+¿Cuánto es 144 dividido por 12?, OPERACION_MAT
+¿Cuántos jugadores hay en un equipo de fútbol soccer?, PREGUNTA
+¿Cuál es el símbolo químico del hidrógeno?, PREGUNTA
+¿Cuántas patas tiene una abeja?, PREGUNTA
+¿Cuál es el actor principal de la película "The Shawshank Redemption"?, PREGUNTA
+¿Puedes contar un chiste sobre gatos?, CHISTE
+¿Cuál es el vuelo más largo del mundo en duración?, PREGUNTA
+¿Cómo se llama nuestra galaxia?, PREGUNTA
+¿Quién escribió el libro "Don Quijote de la Mancha"?, PREGUNTA_AUTOR
+¿Cuál es el país con la mayor población del mundo?, PREGUNTA
+¿Cuál es la capital de España?, PREGUNTA
+¿Puedes recomendarme una película de acción?, RECOMENDACION
+¿Cuántas pulgadas hay en un pie?, PREGUNTA
+¿Cuál es el significado de la palabra "sustentabilidad"?, SIGNIFICADO
+¿Cuál es la duración promedio de un vuelo de Nueva York a Los Ángeles?, PREGUNTA
+¿Puedes mostrar el mapa de la ciudad de Londres?, MAPA
+¿Cuál es el precio actual del oro por onza?, PREGUNTA_PRECIO
+¿Cuál es la altura de la Estatua de la Libertad?, PREGUNTA
+¿Cuántas teclas tiene un piano estándar?, PREGUNTA
+¿Cuál es el símbolo químico del hidrógeno?, PREGUNTA
+¿Puedes recomendarme un buen libro de ciencia ficción?, RECOMENDACION
+¿Cuál es el salario mínimo en Francia?, PREGUNTA
+¿Cuántos continentes hay en el mundo?, PREGUNTA
+¿Cuál es el nombre del primer ser humano en viajar al espacio?, PREGUNTA
+¿Puedes buscar el restaurante mejor calificado en esta área?, BUSCAR_LUGAR
+¿Cuál es la longitud del ecuador terrestre?, PREGUNTA
+¿Cuál es la temperatura promedio en el desierto del Sahara?, PREGUNTA
+¿Cuántos dientes tiene un adulto promedio?, PREGUNTA
+¿Puedes decirme un dato histórico interesante?, DATO_HISTORICO
+¿Cuál es la capital de México?, PREGUNTA
+¿Cuántas provincias hay en Canadá?, PREGUNTA
+¿Cuál es el autor de la pintura "La Mona Lisa"?, PREGUNTA_AUTOR
+¿Puedes recomendarme un buen restaurante italiano en esta ciudad?, RECOMENDACION
+¿Cuál es el tiempo de vida promedio de una abeja obrera?, PREGUNTA
+¿Cuántos planetas hay en nuestro sistema solar?, PREGUNTA
+¿Cuál es el nombre de la montaña más alta del mundo?, PREGUNTA
+¿Puedes buscar información sobre la película "El Padrino"?, BUSCAR_INFORMACION
+¿Cuál es el horario de apertura del supermercado más cercano?, HORARIO
+¿Puedes reservar una mesa en un restaurante para esta noche?, RESERVAR
+¿Cuál es la fórmula química del agua?, PREGUNTA
+¿Puedes decirme un refrán popular?, REFRAN
+¿Cuál es la capital de Australia?, PREGUNTA
+¿Me puedes poner una alarma para las 8 am?, ALARMA
+¿Cuál es el número de teléfono de la pizzería de la esquina?, PREGUNTA
+¿Cómo se dice "gracias" en japonés?, TRADUCCION
+¿Cuál es la velocidad de la luz en metros por segundo?, PREGUNTA
+¿Puedes buscar información sobre Albert Einstein?, BUSCAR_INFORMACION
+¿Cuál es el número atómico del oro?, PREGUNTA
+¿Cuál es la moneda oficial de Canadá?, PREGUNTA
+¿Qué significa la palabra "serendipia"?, SIGNIFICADO
+¿Cuántas estrellas hay en la Vía Láctea?, PREGUNTA
+¿Cuál es la capital de Brasil?, PREGUNTA
+¿Cuál es el próximo feriado nacional?, CALENDARIO
+¿Puedes poner música relajante?, REPRODUCIR_AUDIO
+¿Cuál es el idioma más hablado en el mundo?, PREGUNTA
+¿Cuál es la diferencia entre un virus y una bacteria?, DIFERENCIA
+¿Cuál es la altura del Monte Everest?, PREGUNTA
+¿Puedes darme información sobre el último libro de Stephen King?, BUSCAR_INFORMACION
+¿Cuánto es 27 dividido por 3?, OPERACION_MAT
+¿Cuántos jugadores hay en un equipo de baloncesto?, PREGUNTA
+¿Cuál es el símbolo químico del oxígeno?, PREGUNTA
+¿Cuántas patas tiene una araña?, PREGUNTA
+¿Cuál es el actor principal de la película "Titanic"?, PREGUNTA
+¿Puedes decirme un dato curioso?, DATO_CURIOSO
+¿Cuál es el vuelo más corto entre dos ciudades?, PREGUNTA
+¿Cómo se llama la galaxia en la que se encuentra nuestro sistema solar?, PREGUNTA
+¿Cuál es el autor de la novela "1984"?, PREGUNTA_AUTOR
+¿Dónde puedo encontrar una buena pizzería?, BUSCAR_LUGAR
+¿Cuánto cuesta un boleto de avión a París?, PREGUNTA_PRECIO
+¿Puedes recordarme comprar flores para el cumpleaños de mi madre?, RECORDATORIO
+¿Cuál es la mejor ruta para llegar al aeropuerto?, DIRECCIONES
+Reproduce mi lista de reproducción de música relajante, REPRODUCIR_AUDIO
+¿Qué actividades hay para hacer este fin de semana?, BUSCAR_EVENTOS
+Traduce esta frase al italiano: Te quiero mucho, TRADUCCION
+¿Cuál es el horario de apertura del supermercado?, HORARIO
+¿Puedes hacer una reserva en un restaurante para esta noche?, RESERVAR
+¿Cuál es la mejor marca de teléfonos móviles?, RECOMENDACION
+¿Cuándo es el próximo partido de fútbol?, CALENDARIO
+¿Qué restaurantes de comida mexicana están cerca de aquí?, BUSCAR_LUGAR
+¿Puedes agregar papel higiénico a la lista de compras?, LISTA_DE_COMPRA
+¿Puedes hacer una reserva de hotel para dos personas?, RESERVAR
+¿Cómo se dice "gracias" en japonés?, TRADUCCION
+¿Puedes recomendar una película de comedia?, RECOMENDACION
+Hola, ¿cómo te encuentras hoy?, SALUDO
+¿Puedes compartir un chiste gracioso?, PREGUNTA
+¿Cuál es la previsión del tiempo para hoy?, TIEMPO
+Reproduce mi canción favorita, por favor, REPRODUCIR_AUDIO
+¿Qué películas están actualmente en los cines?, PREGUNTA
+¿Puedes recordarme mi compromiso a las 4 pm?, RECORDATORIO
+¿Cuántos centímetros corresponden a una pulgada?, PREGUNTA
+¿Cuál es la capital de Francia?, PREGUNTA
+¿Cuál es el significado de la palabra "efímero" en español?, PREGUNTA
+Traduce esta frase al francés: "Hola, ¿comment ça va?", TRADUCCION
+¿Sabes cuántas personas viven en Nueva York?, PREGUNTA
+¿Cuál es la última noticia destacada?, BUSCAR_NOTICIA
+¿Cuál es el restaurante más recomendado en la ciudad?, PREGUNTA
+¿Puedes contar hasta 10 en el idioma alemán?, PREGUNTA
+¿Cuánto es 15 multiplicado por 4?, PREGUNTA
+¿Dónde se encuentra la biblioteca más cercana?, MAPA
+¿Puedes acceder a mi bandeja de entrada de correo electrónico?, CORREO
+Hola, ¿qué tal estás hoy?, SALUDO
+¿cómo te sientes hoy?, SALUDO
+¿cómo va tu día?, SALUDO
+¿cómo te encuentras en este momento?, SALUDO
+¿cómo ha amanecido tu día?, SALUDO
+¿cómo estuvo tu noche?, SALUDO
+¿cómo transcurre tu jornada?, SALUDO
+¿cómo te ha ido hasta ahora?, SALUDO
+¿qué novedades tienes hoy?, SALUDO
+¿cómo marcha todo contigo?, SALUDO
+¿Puedes compartir un chiste gracioso?, PREGUNTA
+¿Me cuentas un chiste divertido?, PREGUNTA
+¿Podrías deleitarme con un chiste?, PREGUNTA
+¿Tienes algún chiste para alegrar el día?, PREGUNTA
+¿Conoces algún chiste ameno?, PREGUNTA
+¿Me dirías un chiste para animarme?, PREGUNTA
+¿Tienes alguna broma que contar?, PREGUNTA
+¿Puedes arrancarme una sonrisa con un chiste?, PREGUNTA
+¿Tienes un chiste entretenido para compartir?, PREGUNTA
+¿Podrías iluminar mi día con un chiste?, PREGUNTA
+¿Cómo está el clima hoy?, TIEMPO
+¿Qué tal está el clima en estos momentos?, TIEMPO
+¿Cuál es la situación climática del día?, TIEMPO
+¿Podrías informarme sobre las condiciones climáticas actuales?, TIEMPO
+¿Me puedes decir cómo se encuentra el clima hoy?, TIEMPO
+¿Qué condiciones meteorológicas tenemos hoy?, TIEMPO
+¿Cómo se presenta el clima en este día?, TIEMPO
+¿Me podrías dar un reporte del clima actual?, TIEMPO
+¿Cuál es la temperatura y las condiciones del clima hoy?, TIEMPO
+¿Podrías darme detalles acerca del clima de hoy?, TIEMPO
+Reproduce mi canción favorita, por favor, REPRODUCIR_AUDIO
+Por favor, pon mi canción favorita, REPRODUCIR_AUDIO
+¿Podrías reproducir la canción que más me gusta?, REPRODUCIR_AUDIO
+¿Puedes poner en reproducción mi canción preferida?, REPRODUCIR_AUDIO
+Quiero escuchar mi canción favorita, ¿la puedes reproducir?, REPRODUCIR_AUDIO
+¿Puedes iniciar la reproducción de mi canción favorita?, REPRODUCIR_AUDIO
+Por favor, pon en marcha mi canción predilecta, REPRODUCIR_AUDIO
+¿Podrías poner la canción que más disfruto?, REPRODUCIR_AUDIO
+¿Puedes reproducir la canción que siempre me anima?, REPRODUCIR_AUDIO
+¿Me pones mi canción favorita?, REPRODUCIR_AUDIO
+¿Cuáles películas están disponibles en el cine?, PREGUNTA
+¿Me puedes informar sobre las películas que se proyectan actualmente?, PREGUNTA
+¿Cuáles son las películas en cartelera en este momento?, PREGUNTA
+¿Podrías darme una lista de las películas que están en los cines?, PREGUNTA
+¿Qué películas se encuentran actualmente en exhibición?, PREGUNTA
+¿Me puedes decir qué filmes están disponibles para ver en el cine?, PREGUNTA
+¿Cuáles películas están en las salas de cine en estos días?, PREGUNTA
+¿Podrías recomendarme alguna película que esté en cartelera?, PREGUNTA
+¿Me puedes sugerir alguna película que esté actualmente en los cines?, PREGUNTA
+¿Cuáles películas están siendo proyectadas en las salas de cine?, PREGUNTA
+¿Podrías recordarme mi cita de las 4 pm?, RECORDATORIO
+¿Me haces el favor de recordarme mi compromiso a las 4 pm?, RECORDATORIO
+¿Puedes programar una alarma para recordarme mi cita a las 4 pm?, RECORDATORIO
+¿Me puedes ayudar a no olvidar mi cita de las 4 pm?, RECORDATORIO
+¿Podrías añadir a tu lista que tengo una cita a las 4 pm?, RECORDATORIO
+¿Me puedes notificar sobre mi cita programada para las 4 pm?, RECORDATORIO
+¿Puedes recordarme que tengo una cita a las 4 pm?, RECORDATORIO
+¿Me haces el favor de poner un recordatorio para mi cita a las 4 pm?, RECORDATORIO
+¿Podrías asegurarte de que no me olvide de mi cita a las 4 pm?, RECORDATORIO
+¿Me puedes ayudar a recordar que tengo una cita importante a las 4 pm?, RECORDATORIO
+¿Cuántos milímetros hay en una pulgada?, PREGUNTA
+¿Me puedes decir cuántos centímetros equivalen a una pulgada?, PREGUNTA
+¿Cuál es la cantidad de centímetros que corresponden a una pulgada?, PREGUNTA
+¿Podrías darme la conversión de pulgadas a centímetros?, PREGUNTA
+¿Cuántos centímetros se encuentran en una pulgada exactamente?, PREGUNTA
+¿Me puedes dar el valor en centímetros de una pulgada?, PREGUNTA
+¿Cuántos centímetros son equivalentes a una pulgada?, PREGUNTA
+¿Podrías decirme cuántos milímetros se necesitan para formar una pulgada?, PREGUNTA
+¿Cuál es la relación entre centímetros y pulgadas?, PREGUNTA
+¿Me puedes proporcionar la medida en centímetros de una pulgada?, PREGUNTA
+¿Cuál es la capital de Francia?, PREGUNTA
+¿Cuál es la ciudad capital de Francia?, PREGUNTA
+¿Podrías decirme cuál es la capital francesa?, PREGUNTA
+¿Me puedes informar sobre la capital de Francia?, PREGUNTA
+¿Cuál es la capital oficial de Francia?, PREGUNTA
+¿Podrías decirme la ciudad que se considera la capital de Francia?, PREGUNTA
+¿Me puedes contar cuál es la capital reconocida de Francia?, PREGUNTA
+¿Cuál es la ciudad principal de Francia?, PREGUNTA
+¿Podrías decirme cuál es la capital política de Francia?, PREGUNTA
+¿Me puedes proporcionar el nombre de la capital francesa?, PREGUNTA
+¿Cuál es el significado de la palabra "efímero"?, PREGUNTA
+¿Podrías explicarme qué quiere decir la palabra "efímero"?, PREGUNTA
+¿Me puedes dar la definición de la palabra "efímero"?, PREGUNTA
+¿Cuál es el sentido de la palabra "efímero"?, PREGUNTA
+¿Podrías decirme el significado de la palabra "efímero"?, PREGUNTA
+¿Me puedes proporcionar la definición de "efímero"?, PREGUNTA
+¿Cuál es el concepto que se atribuye a la palabra "efímero"?, PREGUNTA
+¿Podrías explicarme qué se entiende por "efímero"?, PREGUNTA
+¿Me puedes dar el sentido de "efímero"?, PREGUNTA
+¿Cuál es el significado que se le otorga a "efímero"?, PREGUNTA
+Traduce al francés esta frase: "Hola, ¿cómo estás?", TRADUCCION
+¿Puedes decirme cómo se dice esta frase en francés: "Hola, ¿cómo estás?"?, TRADUCCION
+¿Me puedes traducir al francés la siguiente frase: "Hola, ¿cómo estás?"?, TRADUCCION
+¿Podrías proporcionarme la traducción de esta frase al francés: "Hola, ¿cómo estás?"?, TRADUCCION
+¿Puedes traducir al idioma francés la siguiente oración: "Hola, ¿cómo estás?"?, TRADUCCION
+¿Me puedes dar la traducción al francés de esta frase: "Hola, ¿cómo estás?"?, TRADUCCION
+¿Podrías decirme cómo se dice en francés la frase: "Hola, ¿cómo estás?"?, TRADUCCION
+¿Puedes traducir esta oración al francés: "Hola, ¿cómo estás?"?, TRADUCCION
+¿Me puedes proporcionar la versión en francés de esta frase: "Hola, ¿cómo estás?"?, TRADUCCION
+¿Podrías decirme la traducción al francés de este enunciado: "Hola, ¿cómo estás?"?, TRADUCCION
+¿Dónde puedo encontrar la biblioteca más cercana?, MAPA
+¿Podrías indicarme la ubicación de la biblioteca más cercana?, MAPA
+¿Me puedes decir dónde se encuentra la biblioteca más cercana?, MAPA
+¿Cuál es la dirección de la biblioteca más cercana?, MAPA
+¿Podrías ayudarme a encontrar la biblioteca más cercana?, MAPA
+¿Sabes dónde puedo encontrar una biblioteca cerca de aquí?, MAPA
+¿Me puedes dar indicaciones para llegar a la biblioteca más cercana?, MAPA
+¿Dónde está ubicada la biblioteca más cercana?, MAPA
+¿Podrías mostrarme en el mapa dónde está la biblioteca más cercana?, MAPA
+¿Puedes ayudarme a localizar la biblioteca más cercana?, MAPA
+¿Puedes acceder a mi bandeja de entrada de correo electrónico?, CORREO
+¿Podrías abrir mi correo electrónico?, CORREO
+¿Me puedes dar acceso a mi cuenta de correo electrónico?, CORREO
+¿Puedes mostrar mi bandeja de entrada de correo electrónico?, CORREO
+¿Podrías ayudarme a abrir mi correo electrónico?, CORREO
+¿Me puedes mostrar los mensajes de mi correo electrónico?, CORREO
+¿Puedes ver si tengo algún correo electrónico nuevo?, CORREO
+¿Podrías revisar mi bandeja de entrada de correo electrónico?, CORREO
+¿Me puedes mostrar los correos electrónicos que tengo?, CORREO
+¿Puedes darme acceso a mi cuenta de correo?, CORREO
+¿En qué año ocurrió la Revolución Francesa?, PREGUNTA
+¿Me puedes decir la fecha en la que tuvo lugar la Revolución Francesa?, PREGUNTA
+¿Cuándo sucedió exactamente la Revolución Francesa?, PREGUNTA
+¿Podrías decirme el año en el que se llevó a cabo la Revolución Francesa?, PREGUNTA
+¿En qué momento histórico se produjo la Revolución Francesa?, PREGUNTA
+¿Me puedes proporcionar la fecha precisa de la Revolución Francesa?, PREGUNTA
+¿Cuál es la época en la que tuvo lugar la Revolución Francesa?, PREGUNTA
+¿Podrías indicarme cuándo ocurrió la Revolución Francesa?, PREGUNTA
+¿Me puedes decir en qué año se desencadenó la Revolución Francesa?, PREGUNTA
+¿Cuándo se inició y terminó la Revolución Francesa?, PREGUNTA
+¿Cuál es la altura actual de la Torre Eiffel?, PREGUNTA
+¿Me puedes decir cuántos metros mide la Torre Eiffel?, PREGUNTA
+¿Cuántos pies de altura tiene la Torre Eiffel?, PREGUNTA
+¿Podrías darme la medida de la altura de la Torre Eiffel?, PREGUNTA
+¿Cuál es la altitud aproximada de la Torre Eiffel?, PREGUNTA
+¿Cuántos kilómetros hay en una milla?, PREGUNTA
+¿Cuál es la equivalencia entre kilómetros y millas?, PREGUNTA
+¿Podrías decirme cuántos kilómetros equivalen a una milla?, PREGUNTA
+¿Me puedes dar la conversión de millas a kilómetros?, PREGUNTA
+¿Cuántos kilómetros se encuentran en una milla terrestre?, PREGUNTA
+¿Podrías proporcionarme el factor de conversión de kilómetros a millas?, PREGUNTA
+¿Me puedes decir cuántos kilómetros representan una milla?, PREGUNTA
+¿Cuál es el valor numérico de la relación entre kilómetros y millas?, PREGUNTA
+¿Podrías darme la cantidad de kilómetros equivalentes a una milla?, PREGUNTA
+¿Me puedes decir la cantidad exacta de kilómetros por cada milla?, PREGUNTA
+¿Quién es el autor de la novela "Cien años de soledad"?, PREGUNTA
+¿Podrías decirme quién escribió el libro "Cien años de soledad"?, PREGUNTA
+¿Me puedes dar el nombre del autor de la obra literaria "Cien años de soledad"?, PREGUNTA
+¿Sabes quién es el escritor de la novela titulada "Cien años de soledad"?, PREGUNTA
+¿Podrías indicarme quién escribió la famosa novela "Cien años de soledad"?, PREGUNTA
+¿Me puedes proporcionar el nombre del autor de "Cien años de soledad"?, PREGUNTA
+¿Podrías decirme quién es el creador de la obra literaria "Cien años de soledad"?, PREGUNTA
+¿Me puedes informar quién es el autor del libro "Cien años de soledad"?, PREGUNTA
+¿Podrías darme el nombre del escritor de la novela conocida como "Cien años de soledad"?, PREGUNTA
+¿Me puedes decir quién escribió "Cien años de soledad"?, PREGUNTA
+¿Me puedes proporcionar indicaciones para llegar a la estación de tren más cercana?, MAPA
+¿Podrías ayudarme a encontrar el camino hacia la estación de tren?, MAPA
+¿Me puedes decir cómo llegar a la estación de tren desde aquí?, MAPA
+¿Podrías indicarme la ruta para llegar a la estación de tren más próxima?, MAPA
+¿Me puedes mostrar el camino hacia la estación de tren más cercana?, MAPA
+¿Podrías ayudarme a encontrar la dirección de la estación de tren?, MAPA
+¿Me puedes dar instrucciones para llegar a la estación de tren más próxima?, MAPA
+¿Podrías mostrarme en el mapa cómo llegar a la estación de tren?, MAPA
+¿Me puedes guiar hacia la estación de tren más cercana?, MAPA

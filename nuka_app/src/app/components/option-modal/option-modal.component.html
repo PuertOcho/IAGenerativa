@@ -1,0 +1,51 @@
+<ng-template [ngIf]="!isLoading" [ngIfElse]="loadingOptions">
+
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-button (click)="cancel()">Cancelar</ion-button>
+      </ion-buttons>
+      <ion-title>{{ opcion.etiqueta }}</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="confirm()" [strong]="true">Confirmar</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">
+    <span *ngIf="!(datosNecesariosKeys.length > 0)" class="text" innerHTML="La opcion seleccionada tiene algun fallo en los datos necesarios que incluir"></span>
+
+    <ion-grid *ngIf="datosNecesariosKeys.length > 0">
+      <ion-row *ngFor="let datoKey of datosNecesariosKeys">
+        <ion-col size="12" style="padding: 2px;">
+          <ion-label> {{ getDatoTitulo(datoKey) }} </ion-label>
+        </ion-col>
+
+        <ion-col size="12" style="padding: 2px;">
+          
+          <!-- imagen, texto, seleccion, checkbox, toogle, rango -->
+
+          <ng-template [ngIf]="getTipoDato(datoKey) == 'texto'">
+            <ion-input label="texto" label-placement="floating" fill="outline" [value]="getAuxiliarDato(datoKey)" [placeholder]="getDatoTitulo(datoKey)" 
+              (ionChange)="guardarDatos(datoKey, $event)"></ion-input>
+          </ng-template>
+
+          <ng-template [ngIf]="getTipoDato(datoKey) == 'seleccion'">
+            <ion-select [placeholder]="getDatoTitulo(datoKey)" (ionChange)="guardarDatos(datoKey, $event)">
+              <ion-select-option *ngFor="let op of getAuxiliarDato(datoKey)" (ionChange)="guardarDatos(datoKey, $event)" [value]="op">{{ op }}</ion-select-option>
+            </ion-select>
+          </ng-template>
+
+
+          <div class="separator"></div>
+
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>
+</ng-template>
+
+<ng-template #loadingOptions>
+  <ion-item lines="none" class="loading-item">
+    <ion-spinner name="crescent" class="loading-chat"></ion-spinner>
+  </ion-item>
+</ng-template> 

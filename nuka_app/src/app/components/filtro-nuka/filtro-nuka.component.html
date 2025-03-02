@@ -1,0 +1,57 @@
+<div style="width: auto; min-width: 200px; margin: 5px; padding: 5px; border-radius: 15px;
+border: 1px solid var(--ion-color-light-shade);">
+      <span style="margin-left: 5px;">            
+        {{ titulo }}
+      </span>
+      
+      <ng-template [ngIf]="tipo == 'SELECT_MULTIPLE'">
+        <ion-select
+          #multiSelect
+          interface="popover"
+          toggleIcon="add"
+          expandedIcon="remove"
+          [interfaceOptions]="{size: 'cover'}"
+          [multiple]="true"
+          [value]="values"
+          (ionChange)="filtro_SELECT_MULTIPLE_changed($event)"
+          (ionDismiss)="filtro_SELECT_MULTIPLE_Dismiss()"
+          >
+        >
+          <ion-select-option *ngFor="let o of entradasSeleccion" [value]="o"> 
+            <ion-label class="spanLabel"> {{ o }} </ion-label> 
+          </ion-select-option>
+        </ion-select>
+      </ng-template>
+
+      <ng-template [ngIf]="tipo == 'ORDER-BY'">
+        <ion-select
+          interface="popover"
+          toggleIcon="add"
+          expandedIcon="remove"
+          [interfaceOptions]="{size: 'cover'}"
+          (ionChange)="filtro_ORDER_BY_changed($event)"
+          [value]="entradasSeleccion[0]">
+        >
+          <ion-select-option *ngFor="let o of entradasSeleccion" [value]="o"> 
+            <ion-label class="spanLabel"> {{ o }} </ion-label> 
+          </ion-select-option>
+        </ion-select>
+      </ng-template>
+
+      <ng-template [ngIf]="tipo == 'TIME'" >
+         <div>
+          <ion-button fill="clear" (click)="toogleCalendario()">
+            <ion-icon *ngIf="!calendarioAbierto" slot="icon-only" name="eye-outline"></ion-icon>
+            <ion-icon *ngIf="calendarioAbierto" slot="icon-only" name="eye-off-outline"></ion-icon>
+          </ion-button>
+  
+          <ng-template [ngIf]="calendarioAbierto">
+            <ion-datetime 
+              [firstDayOfWeek]="1"
+              presentation="date-time"
+              (ionChange)="filtro_TIME_changed($event)"
+            ></ion-datetime>
+          </ng-template>
+         </div>
+      </ng-template>
+    </div>

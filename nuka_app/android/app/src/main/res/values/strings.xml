@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Memento</string>
+    <string name="title_activity_main">Memento</string>
+    <string name="package_name">com.nuka.memento</string>
+    <string name="custom_url_scheme">com.nuka.memento</string>
+</resources>

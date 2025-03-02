@@ -1,0 +1,18 @@
+<ng-template [ngIf]="!isLoading" [ngIfElse]="loadingOptions">
+  <span class="text" [innerHTML]="opciones?.etiqueta"></span>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngFor="let opcion of opciones?.opciones" size="12" style="padding: 2px;">
+        <ion-button style="width: 90%; margin-top: 2px;" (click)="accionDeOpcion(opcion)">{{ opcion?.etiqueta }}</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ng-template>
+
+<ng-template #loadingOptions>
+  <ion-item class="warpperAppLoadingSkeletonItem" lines="none" >
+    <app-loading-skeleton-item numeroElementos="4" formato="12:c"></app-loading-skeleton-item>
+  </ion-item>
+</ng-template> 

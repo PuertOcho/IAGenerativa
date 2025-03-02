@@ -1,0 +1,396 @@
+.ionToolbar {
+  vertical-align: middle;
+  padding: 5px;
+  overflow: visible;
+  --min-height: 63px;
+}
+.chat-toolbar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  --min-height: 43px;
+  --padding-start: 0px;
+  padding-left: 35px;
+  padding-right: 90px;
+
+  ion-avatar {
+    width: 45px;
+    height: 45px;
+    min-height: 45px;
+    min-width: 45px;
+  }
+
+  .botonFavorito {
+    position: fixed;
+    top: 37px;
+    left: 55px;
+  }
+
+  .SummaryChat {
+    margin-left: 20px;
+    font-size: medium;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+ion-footer ion-toolbar {
+  --background: #f6f6f6;
+  background-color: #f6f6f6;
+
+  ion-textarea {
+    margin-top: 6px;
+    margin-bottom: 6px;
+    background-color: #fff;
+    border-radius: 20px;
+    --padding-start: 10px;
+  }
+}
+
+ion-icon {
+  min-width: 30px;
+}
+
+ion-button {
+  padding-left: 0%;
+  padding-right: 0px;
+  margin: 0%;
+  max-width: 100%;
+}
+
+ion-content {
+  transform: scaleY(-1);
+  scrollbar-color: var(--ion-color-primary-tint) transparent;
+  scrollbar-width: thin;
+}
+
+.item-options-ios {
+  border-bottom-style: none;
+  border-bottom-style: solid;
+  border-bottom-color: var(
+    --ion-item-border-color,
+    var(--ion-border-color, var(--ion-color-step-250, #c8c7cc))
+  );
+}
+
+.class-empty {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center; /* Centrar horizontalmente */
+  align-items: center; /* Centrar verticalmente */
+  padding: 0;
+  transform: scaleY(-1);
+}
+
+.alCentro {
+  display: flex;
+  justify-content: center; /* Centrar horizontalmente */
+  align-items: center; /* Centrar verticalmente */
+}
+
+.sinBackground {
+  --background: none;
+  background: none;
+}
+
+.loadingAlCentro {
+  background: transparent;
+  min-width: 100%;
+  min-height: 100%;
+  display: flex;
+  justify-content: center; /* Centrar horizontalmente */
+  align-items: center; /* Centrar verticalmente */
+  background: none;
+  margin-bottom: 10px;
+}
+
+.BackButton {
+  margin: 0;
+  padding: 0;
+
+  ion-back-button {
+    margin-left: 0px;
+  }
+}
+
+// Estilos para boton flotante de Directorios Obsidian
+.div-opcion-flotante-chat {
+  // Demas propiedades heredadas de global.scss
+  right: 85px;
+  z-index: 8;
+
+  ion-button {
+    ion-icon {
+      z-index: 8;
+      color: var(--ion-color-primary-contrast);
+    }
+  }
+}
+
+.div-opcion-flotante-chat-actualizar {
+  position: fixed;
+  top: 90px;
+  right: 155px;
+  z-index: 8;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 5px;
+
+  background-color: var(--ion-color-primary);
+
+  height: 60px;
+  width: 60px;
+  overflow: hidden;
+
+  display: flex;
+  justify-content: center; /* Centrar horizontalmente */
+  align-items: center; /* Centrar verticalmente */
+
+  ion-button {
+    width: 100%;
+    max-width: 60px;
+    padding: 0;
+    margin: 0;
+
+    ion-icon {
+      z-index: 8;
+      color: var(--ion-color-primary-contrast);
+    }
+  }
+
+  overflow: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.div-opcion-flotante-borrar-mensajes {
+  position: fixed;
+  top: 170px;
+  right: 20px;
+  z-index: 8;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 5px;
+
+  background-color: var(--ion-color-medium);
+
+  height: 60px;
+  width: 60px;
+  overflow: hidden;
+
+  display: flex;
+  justify-content: center; /* Centrar horizontalmente */
+  align-items: center; /* Centrar verticalmente */
+
+  ion-button {
+    width: 100%;
+    //max-width: 60px;
+    padding: 0;
+    margin: 0;
+
+    img {
+      width: 50px;
+      height: 50px;
+      max-width: 100px;
+      padding: 0;
+      margin: 0;
+    }
+  }
+
+  overflow: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.div-opcion-flotante-borrar-mensajes-cancelar {
+  position: fixed;
+  top: 170px;
+  right: 90px;
+  z-index: 8;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 5px;
+
+  background-color: var(--ion-color-medium);
+
+  height: 60px;
+  width: 60px;
+  overflow: hidden;
+
+  display: flex;
+  justify-content: center; /* Centrar horizontalmente */
+  align-items: center; /* Centrar verticalmente */
+
+  ion-button {
+    width: 100%;
+    max-width: 60px;
+    padding: 0;
+    margin: 0;
+
+    ion-icon {
+      z-index: 8;
+      color: var(--ion-color-primary-contrast);
+    }
+  }
+
+  overflow: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.iconoCheckboxDirectorios {
+  z-index: 9;
+  position: fixed;
+  top: 135px;
+  right: 80px;
+  font-size: 20px;
+
+  height: 20px;
+  width: 20px;
+  max-height: 20px;
+  max-width: 20px;
+  min-height: 20px;
+  min-width: 20px;
+
+  border-radius: 50%;
+  border: 1px solid var(--ion-color-light);
+  padding: 3px;
+  cursor: pointer; /* Cambia el cursor a una mano para indicar que es clickeable */
+}
+
+.iconoCargaArbolArchivos {
+  background: var(--ion-color-secondary);
+  z-index: 9;
+  position: fixed;
+  top: 135px;
+  right: 80px;
+  font-size: 20px;
+
+  height: 20px;
+  width: 20px;
+  max-height: 20px;
+  max-width: 20px;
+  min-height: 20px;
+  min-width: 20px;
+
+  border-radius: 50%;
+  border: 1px solid var(--ion-color-light);
+  padding-left: 3px;
+  padding-right: 3px;
+  padding-bottom: 4px;
+  padding-top: 2px;
+
+  animation-name: parpadeo;
+  animation-duration: 2.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+
+  -webkit-animation-name: parpadeo;
+  -webkit-animation-duration: 2.5s;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+}
+
+@-moz-keyframes parpadeo {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes parpadeo {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes parpadeo {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.textarea-mensaje {
+  margin-top: 5px;
+  max-height: 520px;
+
+  textarea {
+    max-height: 500px;
+    width: 100%;
+    resize: none;
+    padding-left: 20px;
+    padding-top: 14px;
+    //padding-bottom: 5px;
+    padding-right: 10px;
+
+    border-radius: 20px;
+
+    overflow: auto;
+    border: none;
+    outline: none;
+
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+
+    &::-webkit-input-placeholder {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+    }
+
+    &::-webkit-scrollbar {
+      width: 7px;
+      scroll-behavior: reverse;
+      overflow-y: scroll;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: none;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      background: var(--ion-color-medium);
+    }
+  }
+}
+
+.typing {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: typing 3.5s steps(40) 1s 1 normal both;
+  border-right: none; /* Eliminamos el cursor */
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
