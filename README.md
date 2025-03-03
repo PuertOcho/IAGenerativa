@@ -7,6 +7,7 @@ Nuka es un asistente personal que he estado desarrollando durante los últimos d
 Se compone de dos partes principales:
 
 nuka_app → Aplicación móvil desarrollada con Ionic 6 + Capacitor y Angular 18 para interactuar con el asistente.
+
 nuka_server → Backend en Spring Boot 2.7 (Java 17) que procesa peticiones, gestiona usuarios y administra los diferentes módulos del asistente.
 El sistema sigue una arquitectura basada en microservicios y está dockerizado para facilitar el despliegue, escalabilidad y mantenimiento. Este mismo Backend tiene la posibilidad de hacer peticiones a otros endpoint con FastApi con Python.
 
