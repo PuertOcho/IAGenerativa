@@ -62,7 +62,12 @@ Este asistente no solo es un experimento técnico, sino también una demostraci�
 
 # Video
 
-![](imagenes/video_0.mp4)
+# Video
+
+<video controls width="600">
+  <source src="imagenes/video_0.mp4" type="video/mp4">
+  Tu navegador no soporta el elemento de video.
+</video>
 
 # Ejecutalo tu mismo!
 
