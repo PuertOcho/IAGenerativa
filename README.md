@@ -1,5 +1,6 @@
 # IA Generativa – Nuka
-![](imagenes/imagen_9.png)
+
+<img src="imagenes/imagen_9.png" alt="Descripción" width="400">
 
 Nuka es un asistente personal que he estado desarrollando durante los últimos dos años, coincidiendo prácticamente con la llegada de ChatGPT. Este proyecto surge de mi interés por la IA, la automatización y la integración de modelos en infraestructuras locales.
 
