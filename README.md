@@ -61,7 +61,8 @@ Este asistente no solo es un experimento técnico, sino también una demostraci�
 ![](imagenes/imagen_8.png)
 
 # Video 
-## Disponible en -> imagenes/video_0.mp4
+
+Disponible en -> imagenes/video_0.mp4
 
 # Ejecutalo tu mismo!
 
