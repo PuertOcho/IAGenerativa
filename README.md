@@ -60,14 +60,8 @@ Este asistente no solo es un experimento técnico, sino también una demostraci�
 ![](imagenes/imagen_7.png)
 ![](imagenes/imagen_8.png)
 
-# Video
-
-# Video
-
-<video controls width="600">
-  <source src="imagenes/video_0.mp4" type="video/mp4">
-  Tu navegador no soporta el elemento de video.
-</video>
+# Video 
+## Disponible en -> imagenes/video_0.mp4
 
 # Ejecutalo tu mismo!
 
